@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <nuxt-link class="navbar-brand" :to="{ name: 'home' }">Daily List</nuxt-link>
       <button

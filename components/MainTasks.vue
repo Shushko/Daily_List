@@ -4,70 +4,89 @@
       <h3>Today tasks:</h3>
       <div class="todo-box-tasks">
         <table>
-          <tr v-for="(task, index) of tasks" :key="task.index" class="todo-list">
+          <tr
+            v-for="(task, index) of tasks"
+            :key="task.index"
+            class="todo-list"
+            :style="{ background: task.done === true ? 'palegreen' : 'white' }"
+          >
             <td>
               <label class="checkbox">
                 <input type="checkbox" class="checkbox-input">
-                <div class="checkbox-body" @click="onToggleItem(task.id)" />
+                <div
+                  class="checkbox-body"
+                  :style="{ background: task.done === true ? 'black' : 'white' }"
+                  @click="onChangeStatus(task)"
+                />
               </label>
             </td>
             <td>
               {{ index+1 }}
             </td>
             <td>
-              <div class="item-list">
-                {{ task.todo }}
-              </div>
+              <EditTask :task="task" />
             </td>
-            <td>
-              <button class="btn btn-sm btn-outline-success">
-                Edit
-              </button>
-            </td>
-            <td>
-              <button class="btn btn-sm btn-outline-danger">
+            <td class="remove-btn">
+              <button class="btn btn-sm btn-outline-danger" @click="onRemoveTask(task.id)">
                 Remove
               </button>
             </td>
           </tr>
         </table>
-        {{ IdTasks }}
+        <AddForm />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import AddForm from './AddForm'
+import EditTask from './EditTask'
 export default {
   name: 'MainTasks',
+  components: {
+    EditTask,
+    AddForm
+  },
   props: {
     tasks: {
       type: Array,
       required: false
     }
   },
-  data: () => ({
-    IdTasks: []
-  }),
   methods: {
-    onToggleItem (item) {
+    async onChangeStatus (item) {
+      if (!item.done) {
+        await this.$axios.$patch(`/tasks/${item.id}`, { done: true })
+      } else {
+        await this.$axios.$patch(`/tasks/${item.id}`, { done: false })
+      }
+      this.tasks = await this.$axios.$get('tasks/')
+    },
+    async onRemoveTask (item) {
+      await this.$axios.delete(`tasks/${item}`)
+      this.tasks = await this.$axios.$get('tasks/')
     }
   }
 }
+
 </script>
 
 <style scoped lang="sass">
 .todo-box
-  margin-top: 30px
+  margin-top: 90px
+  margin-bottom: 100px
   padding: 20px
-  border: 1px solid #cacaca
+  border: 1px solid darkgray
   width: 60%
   border-radius: 4px
 .todo-box-tasks
   margin-top: 30px
+  table
+    width: 100%
 .todo-list
   width: 100%
-  border-bottom: 1px solid #cacaca
+  border-bottom: 1px solid darkgray
   td
     padding: 5px
 .checkbox
@@ -78,7 +97,7 @@ export default {
     margin-top: 5px
     height: 16px
     width: 16px
-    border: 1px solid #cacaca
+    border: 1px solid darkgray
     border-radius: 3px
   &-input
     z-index: -1
@@ -91,5 +110,6 @@ export default {
       position: absolute
       height: 12px
       width: 12px
-      background: lightgreen
+.remove-btn
+  float: right
 </style>
