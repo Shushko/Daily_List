@@ -11,9 +11,31 @@
       "done": false
     },
     {
-      "todo": "Change task - test",
+      "todo": "Change task - test lala",
       "done": false,
       "id": 5
+    },
+    {
+      "todo": "Test todo",
+      "done": false,
+      "id": 6
+    },
+    {
+      "todo": "Lolo!",
+      "done": false,
+      "id": 7
+    }
+  ],
+  "incomes": [
+    {
+      "source": "PersonX",
+      "amount": "3000",
+      "id": 1
+    },
+    {
+      "source": "PersonY",
+      "amount": "5500",
+      "id": 2
     }
   ]
 }

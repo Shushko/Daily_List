@@ -1,40 +1,38 @@
 <template>
-  <div class="container">
-    <div class="todo-box">
-      <h3>Today tasks:</h3>
-      <div class="todo-box-tasks">
-        <table>
-          <tr
-            v-for="(task, index) of tasks"
-            :key="task.index"
-            class="todo-list"
-            :style="{ background: task.done === true ? 'palegreen' : 'white' }"
-          >
-            <td>
-              <label class="checkbox">
-                <input type="checkbox" class="checkbox-input">
-                <div
-                  class="checkbox-body"
-                  :style="{ background: task.done === true ? 'black' : 'white' }"
-                  @click="onChangeStatus(task)"
-                />
-              </label>
-            </td>
-            <td>
-              {{ index+1 }}
-            </td>
-            <td>
-              <EditTask :task="task" />
-            </td>
-            <td class="remove-btn">
-              <button class="btn btn-sm btn-outline-danger" @click="onRemoveTask(task.id)">
-                Remove
-              </button>
-            </td>
-          </tr>
-        </table>
-        <AddForm />
-      </div>
+  <div class="todo-box">
+    <h3>Today tasks:</h3>
+    <div class="todo-box-tasks">
+      <table>
+        <tr
+          v-for="(task, index) of tasks"
+          :key="task.index"
+          class="todo-list"
+          :style="{ background: task.done === true ? 'palegreen' : 'white' }"
+        >
+          <td>
+            <label class="checkbox">
+              <input type="checkbox" class="checkbox-input">
+              <div
+                class="checkbox-body"
+                :style="{ background: task.done === true ? 'black' : 'white' }"
+                @click="onChangeStatus(task)"
+              />
+            </label>
+          </td>
+          <td>
+            {{ index+1 }}
+          </td>
+          <td>
+            <EditTask :task="task" />
+          </td>
+          <td class="remove-btn">
+            <button class="btn btn-sm btn-outline-danger" @click="onRemoveTask(task.id)">
+              Remove
+            </button>
+          </td>
+        </tr>
+      </table>
+      <AddForm />
     </div>
   </div>
 </template>
@@ -74,8 +72,6 @@ export default {
 
 <style scoped lang="sass">
 .todo-box
-  margin-top: 90px
-  margin-bottom: 100px
   padding: 20px
   border: 1px solid darkgray
   width: 60%

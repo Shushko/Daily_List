@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <MainTasks :tasks="todos" />
   </div>
 </template>
@@ -20,5 +20,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="sass">
+.container
+  margin-top: 90px
+  margin-bottom: 100px
 </style>
