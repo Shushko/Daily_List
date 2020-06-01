@@ -37,5 +37,22 @@
       "amount": "5500",
       "id": 2
     }
+  ],
+  "expenses": [
+    {
+      "id": 1,
+      "something": "smth1",
+      "sum": 500
+    },
+    {
+      "id": 2,
+      "something": "smth2",
+      "sum": 1500
+    },
+    {
+      "id": 3,
+      "something": "smth3",
+      "sum": 2500
+    }
   ]
 }
