@@ -2,12 +2,7 @@
   "tasks": [
     {
       "id": 2,
-      "todo": "Task Number Two",
-      "done": false
-    },
-    {
-      "id": 4,
-      "todo": "Task Number Four",
+      "todo": "TEST TODO",
       "done": false
     },
     {
@@ -16,12 +11,12 @@
       "id": 5
     },
     {
-      "todo": "Test todo",
+      "todo": "test",
       "done": false,
       "id": 6
     },
     {
-      "todo": "Lolo!",
+      "todo": "aekrjgha;erj'giejgklwrjinrg",
       "done": false,
       "id": 7
     }

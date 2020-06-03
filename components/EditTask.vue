@@ -1,14 +1,14 @@
 <template>
-  <div @dblclick="editTitleMode(task)">
-    <div v-show="!task.edit_mode">
+  <div @dblclick="onEditMode(task)">
+    <div v-show="!isEdit">
       {{ task.todo }}
     </div>
-    <div v-show="task.edit_mode">
+    <div v-show="isEdit">
       <input
         :ref="'input_item_' + task.id"
-        v-model="task.todo"
+        :value="task.todo"
         type="text"
-        @keyup.enter="saveItemTitle(task)"
+        @keyup.enter="saveItemTodo(task.id, $event.target.value)"
       >
     </div>
   </div>
@@ -23,16 +23,19 @@ export default {
       required: false
     }
   },
+  data: () => ({
+    isEdit: false
+  }),
   methods: {
-    editTitleMode (task) {
-      this.$set(task, 'edit_mode', true)
+    onEditMode (task) {
+      this.isEdit = true
       this.$nextTick(() => {
         this.$refs['input_item_' + task.id].focus()
       })
     },
-    async saveItemTitle (task) {
-      await this.$axios.$patch(`/tasks/${this.task.id}`, { todo: this.task.todo })
-      task.edit_mode = false
+    saveItemTodo (itemId, value) {
+      this.$store.dispatch('tasks/changeItemTodo', { itemId, value })
+      this.isEdit = false
     }
   }
 }
