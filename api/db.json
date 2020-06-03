@@ -2,26 +2,21 @@
   "tasks": [
     {
       "id": 2,
-      "todo": "Task Number Two",
+      "todo": "TEST TODO",
       "done": false
     },
     {
-      "id": 4,
-      "todo": "Task Number Four",
-      "done": false
-    },
-    {
-      "todo": "Change task - test lala",
+      "todo": "Change task - test ",
       "done": false,
       "id": 5
     },
     {
-      "todo": "Test todo",
+      "todo": "test",
       "done": false,
       "id": 6
     },
     {
-      "todo": "Lolo!",
+      "todo": "kjaghkldhfkjhalksfgh",
       "done": false,
       "id": 7
     }

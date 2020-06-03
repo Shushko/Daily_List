@@ -5,8 +5,8 @@
   </div>
 </template>
 <script>
-import IncomesSection from '../components/IncomesSection'
-import ExpensesSection from '../components/Epenses/ExpensesSection'
+import IncomesSection from '../components/Budget/Incomes/IncomesSection'
+import ExpensesSection from '../components/Budget/Epenses/ExpensesSection'
 export default {
   name: 'Finance',
   components: { ExpensesSection, IncomesSection },

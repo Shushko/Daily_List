@@ -26,9 +26,7 @@
             <EditTask :task="task" />
           </td>
           <td class="remove-btn">
-            <button class="btn btn-sm btn-outline-danger" @click="onRemoveTask(task.id)">
-              Remove
-            </button>
+            <RemoveButton :item="task" />
           </td>
         </tr>
       </table>
@@ -38,33 +36,32 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import AddForm from './AddForm'
 import EditTask from './EditTask'
+import RemoveButton from './RemoveButton'
 export default {
   name: 'MainTasks',
   components: {
+    RemoveButton,
     EditTask,
     AddForm
   },
-  props: {
-    tasks: {
-      type: Array,
-      required: false
-    }
+  computed: {
+    ...mapGetters({
+      tasks: 'tasks/todos'
+    })
   },
   methods: {
-    async onChangeStatus (item) {
-      if (!item.done) {
-        await this.$axios.$patch(`/tasks/${item.id}`, { done: true })
-      } else {
-        await this.$axios.$patch(`/tasks/${item.id}`, { done: false })
-      }
-      this.tasks = await this.$axios.$get('tasks/')
-    },
-    async onRemoveTask (item) {
-      await this.$axios.delete(`tasks/${item}`)
-      this.tasks = await this.$axios.$get('tasks/')
+    ...mapActions({
+      getTasks: 'tasks/getTasks'
+    }),
+    onChangeStatus (task) {
+      this.$store.dispatch('tasks/onChangeStatus', task)
     }
+  },
+  mounted () {
+    this.getTasks()
   }
 }
 
@@ -95,6 +92,7 @@ export default {
     width: 16px
     border: 1px solid darkgray
     border-radius: 3px
+    cursor: pointer
   &-input
     z-index: -1
     opacity: 0

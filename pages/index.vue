@@ -1,22 +1,13 @@
 <template>
   <div class="container">
-    <MainTasks :tasks="todos" />
+    <MainTasks />
   </div>
 </template>
 
 <script>
-import MainTasks from '../components/MainTasks'
+import MainTasks from '../components/main_page_tasks/MainTasks'
 export default {
-  components: { MainTasks },
-  async asyncData ({ $axios }) {
-    let todos = []
-    try {
-      todos = await $axios.$get('/tasks')
-    } catch (e) {
-      console.log(e)
-    }
-    return { todos }
-  }
+  components: { MainTasks }
 }
 </script>
 
