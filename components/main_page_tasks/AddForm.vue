@@ -24,11 +24,13 @@ export default {
   methods: {
     ...mapActions({
       onAddTodo () {
-        this.$store.dispatch('tasks/onAddTodo', {
-          todo: this.todo,
-          done: this.done
-        })
-        this.todo = ''
+        if (this.todo) {
+          this.$store.dispatch('tasks/onAddTodo', {
+            todo: this.todo,
+            done: this.done
+          })
+          this.todo = ''
+        }
       }
     })
   }

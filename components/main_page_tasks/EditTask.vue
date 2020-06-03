@@ -34,7 +34,9 @@ export default {
       })
     },
     saveItemTodo (itemId, value) {
-      this.$store.dispatch('tasks/changeItemTodo', { itemId, value })
+      if (value) {
+        this.$store.dispatch('tasks/changeItemTodo', { itemId, value })
+      }
       this.isEdit = false
     }
   }

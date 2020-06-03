@@ -26,9 +26,7 @@
             <EditTask :task="task" />
           </td>
           <td class="remove-btn">
-            <button class="btn btn-sm btn-outline-danger" @click="onRemoveTask(task.id)">
-              Remove
-            </button>
+            <RemoveButton :item="task" />
           </td>
         </tr>
       </table>
@@ -41,9 +39,11 @@
 import { mapGetters, mapActions } from 'vuex'
 import AddForm from './AddForm'
 import EditTask from './EditTask'
+import RemoveButton from './RemoveButton'
 export default {
   name: 'MainTasks',
   components: {
+    RemoveButton,
     EditTask,
     AddForm
   },
@@ -58,9 +58,6 @@ export default {
     }),
     onChangeStatus (task) {
       this.$store.dispatch('tasks/onChangeStatus', task)
-    },
-    onRemoveTask (itemId) {
-      this.$store.dispatch('tasks/onRemoveTask', itemId)
     }
   },
   mounted () {

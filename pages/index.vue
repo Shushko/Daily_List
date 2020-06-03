@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import MainTasks from '../components/MainTasks'
+import MainTasks from '../components/main_page_tasks/MainTasks'
 export default {
   components: { MainTasks }
 }
