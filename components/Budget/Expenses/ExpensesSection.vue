@@ -1,17 +1,15 @@
 <template>
   <div class="expenses-box">
     <h3>Expenses</h3>
+    <AllExpenses />
   </div>
 </template>
 
 <script>
+import AllExpenses from './AllExpenses'
 export default {
   name: 'ExpensesSection',
-  props: {
-    exspenses: {
-      type: Array
-    }
-  }
+  components: { AllExpenses }
 }
 </script>
 
@@ -23,5 +21,6 @@ export default {
   border: 1px solid darkgray
   border-radius: 5px
   h3
-  text-decoration: underline
+    margin-left: 5px
+    text-decoration: underline
 </style>

@@ -23,31 +23,26 @@
   ],
   "incomes": [
     {
-      "source": "PersonX",
-      "amount": "3000",
-      "id": 1
+      "source": "Test",
+      "amount": "500",
+      "id": 3
     },
     {
-      "source": "PersonY",
-      "amount": "5500",
-      "id": 2
+      "source": "test",
+      "amount": "500",
+      "id": 4
     }
   ],
   "expenses": [
     {
       "id": 1,
-      "something": "smth1",
-      "sum": 500
+      "expense": "smth1",
+      "amount": 1500
     },
     {
       "id": 2,
-      "something": "smth2",
-      "sum": 1500
-    },
-    {
-      "id": 3,
-      "something": "smth3",
-      "sum": 2500
+      "expense": "smth2",
+      "amount": 2500
     }
   ]
 }

@@ -1,24 +1,15 @@
 <template>
   <div class="container">
-    <IncomesSection :incomes="incomes" />
+    <IncomesSection />
     <ExpensesSection />
   </div>
 </template>
 <script>
 import IncomesSection from '../components/Budget/Incomes/IncomesSection'
-import ExpensesSection from '../components/Budget/Epenses/ExpensesSection'
+import ExpensesSection from '../components/Budget/Expenses/ExpensesSection'
 export default {
   name: 'Finance',
-  components: { ExpensesSection, IncomesSection },
-  async asyncData ({ $axios }) {
-    let incomes = []
-    try {
-      incomes = await $axios.$get('/incomes')
-    } catch (e) {
-      console.log(e)
-    }
-    return { incomes }
-  }
+  components: { ExpensesSection, IncomesSection }
 }
 </script>
 

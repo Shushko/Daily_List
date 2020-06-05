@@ -6,7 +6,7 @@
         <td>
           {{ index+1 }}
         </td>
-        <td>
+        <td class="item-of-list">
           {{ item.source }}
         </td>
         <td class="amount-item">
@@ -20,8 +20,8 @@
       </tr>
     </table>
     <form class="add-source" @submit="onAddNewSource">
-      <input v-model="newSource.source" type="text" placeholder="Source...">
-      <input v-model="newSource.amount" type="text" placeholder="Amount...">
+      <input v-model="source" type="text" placeholder="Source...">
+      <input v-model="amount" type="text" placeholder="Amount...">
       <button class="btn btn-sm btn-outline-primary add-button" type="submit">
         Add
       </button>
@@ -34,33 +34,37 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'IncomesSection',
-  props: {
-    incomes: {
-      type: Array
-    }
-  },
   data: () => ({
-    total: 0,
-    newSource: {
-      source: null,
-      amount: null
-    }
+    source: '',
+    amount: ''
   }),
   computed: {
+    ...mapGetters({
+      incomes: 'budget/incomes'
+    }),
     getTotal () {
       return this.incomes.reduce((sum, n) => sum + Number(n.amount), 0)
     }
   },
   methods: {
-    async onRemoveItem (id) {
-      await this.$axios.$delete(`incomes/${id}`)
-      this.incomes = await this.$axios.$get('incomes/')
+    ...mapActions({
+      getIncomes: 'budget/getIncomes'
+    }),
+    onRemoveItem (itemId) {
+      this.$store.dispatch('budget/onRemoveItem', itemId)
     },
-    async onAddNewSource () {
-      await this.$axios.$post('incomes/', this.newSource)
+    onAddNewSource () {
+      this.$store.dispatch('budget/onAddNewSource', {
+        source: this.source,
+        amount: this.amount
+      })
     }
+  },
+  mounted () {
+    this.getIncomes()
   }
 }
 </script>
@@ -76,10 +80,14 @@ export default {
     text-decoration: underline
   td
     padding: 5px
+  .item-of-list
+    width: 60%
   .incomes-list
     width: 100%
   .amount-item
     margin: 5px
+    float: right
+  .remove-item
     float: right
   .total-item
     margin-left: 5px
@@ -87,8 +95,6 @@ export default {
     padding-top: 15px
     border-top: 1px solid darkgray
     font-weight: bold
-  .remove-item
-    float: right
   .total-sum
     float: right
     margin-right: 5px
@@ -98,8 +104,8 @@ export default {
     padding: 5px
     width: 100%
     input
-      margin-left: 30px
-      width: 30%
+      margin-left: 20px
+      width: 35%
   .add-button
     margin-left: auto
 </style>
