@@ -15,8 +15,8 @@ export default {
 
 <style scoped lang="sass">
 .expenses-box
-  margin-top: 30px
   width: 40%
+  height: min-content
   padding: 10px
   border: 1px solid darkgray
   border-radius: 5px

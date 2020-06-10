@@ -14,35 +14,30 @@
       "todo": "test",
       "done": false,
       "id": 6
-    },
-    {
-      "todo": "kjaghkldhfkjhalksfgh",
-      "done": false,
-      "id": 7
     }
   ],
   "incomes": [
     {
-      "source": "Test",
-      "amount": "500",
-      "id": 3
-    },
-    {
-      "source": "test",
-      "amount": "500",
-      "id": 4
+      "source": "PersonX",
+      "amount": 10000,
+      "id": 1
     }
   ],
   "expenses": [
     {
-      "id": 1,
-      "expense": "smth1",
-      "amount": 1500
+      "expense": "www",
+      "amount": 3000,
+      "id": 1
     },
     {
-      "id": 2,
-      "expense": "smth2",
-      "amount": 2500
+      "expense": "dba",
+      "amount": 3000,
+      "id": 2
+    },
+    {
+      "expense": "some",
+      "amount": 2700,
+      "id": 3
     }
   ]
 }

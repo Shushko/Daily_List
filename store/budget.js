@@ -22,7 +22,8 @@ export const actions = {
     ctx.commit('updateIncomesList', updList)
   },
   async onAddNewSource (ctx, newSource) {
-    await this.$axios.$post('/incomes', newSource)
+    const newItem = await this.$axios.$post('/incomes', newSource)
+    ctx.commit('addNewItem', newItem)
   }
 }
 
@@ -32,5 +33,8 @@ export const mutations = {
   },
   updateIncomesList (state, updList) {
     state.incomes = updList
+  },
+  addNewItem (state, newItem) {
+    state.incomes.push(newItem)
   }
 }

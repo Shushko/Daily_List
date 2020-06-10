@@ -13,15 +13,33 @@
           {{ item.amount }}
         </td>
         <td>
-          <batton class="btn btn-sm btn-outline-danger remove-item" @click="onRemoveItem(item.id)">
+          <button
+            @click.prevent="onRemoveItem(item.id)"
+            class="btn btn-sm btn-outline-danger remove-item"
+            type="submit"
+          >
             Remove
-          </batton>
+          </button>
         </td>
       </tr>
     </table>
-    <form class="add-source" @submit="onAddNewSource">
-      <input v-model="source" type="text" placeholder="Source...">
-      <input v-model="amount" type="text" placeholder="Amount...">
+    <form class="add-source" @submit.prevent="onAddNewSource">
+      <input
+        v-model="source"
+        type="text"
+        placeholder="Source..."
+        required
+        title="Use only charters!"
+        pattern="^[a-zA-Z\s]+$"
+      >
+      <input
+        v-model="amount"
+        type="text"
+        placeholder="Amount..."
+        title="Use only numbers!"
+        required
+        pattern="^[0-9]+$"
+      >
       <button class="btn btn-sm btn-outline-primary add-button" type="submit">
         Add
       </button>
@@ -38,8 +56,8 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'IncomesSection',
   data: () => ({
-    source: '',
-    amount: ''
+    source: null,
+    amount: null
   }),
   computed: {
     ...mapGetters({
@@ -57,10 +75,15 @@ export default {
       this.$store.dispatch('budget/onRemoveItem', itemId)
     },
     onAddNewSource () {
-      this.$store.dispatch('budget/onAddNewSource', {
-        source: this.source,
-        amount: this.amount
-      })
+      // console.log('DAYS', this.$moment().daysInMonth())
+      if (this.source && this.amount) {
+        this.$store.dispatch('budget/onAddNewSource', {
+          source: this.source,
+          amount: Math.round(this.amount)
+        })
+      }
+      this.source = ''
+      this.amount = ''
     }
   },
   mounted () {
@@ -72,6 +95,7 @@ export default {
 <style scoped lang="sass">
 .incomes-box
   width: 40%
+  height: min-content
   padding: 10px
   border: 1px solid darkgray
   border-radius: 5px
@@ -83,6 +107,7 @@ export default {
   .item-of-list
     width: 60%
   .incomes-list
+    margin-top: 30px
     width: 100%
   .amount-item
     margin: 5px

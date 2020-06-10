@@ -17,9 +17,23 @@
       </tr>
     </table>
     <form class="add-expense">
-      <input v-model="expense" type="text" placeholder="Expense...">
-      <input v-model="amount" type="text" placeholder="Amount...">
-      <button type="submit" class="btn btn-sm btn-outline-primary add-button" @click.prevent="onAddNewExpense()">
+      <input
+        v-model="expense"
+        type="text"
+        placeholder="Expense..."
+        required
+        title="Use only charters!"
+        pattern="^[a-zA-Z\s]+$"
+      >
+      <input
+        v-model="amount"
+        type="text"
+        placeholder="Amount..."
+        title="Use only numbers!"
+        required
+        pattern="^[0-9]+$"
+      >
+      <button class="btn btn-sm btn-outline-primary add-button" type="submit" @click.prevent="onAddNewExpense()">
         Add
       </button>
     </form>
@@ -35,8 +49,8 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'AllExpenses',
   data: () => ({
-    expense: '',
-    amount: ''
+    expense: null,
+    amount: null
   }),
   computed: {
     ...mapGetters({
@@ -54,10 +68,12 @@ export default {
       this.$store.dispatch('all-expenses/onRemoveItem', itemId)
     },
     onAddNewExpense () {
-      this.$store.dispatch('all-expenses/onAddNewExpense', {
-        expense: this.expense,
-        amount: this.amount
-      })
+      if (this.expense && this.amount) {
+        this.$store.dispatch('all-expenses/onAddNewExpense', {
+          expense: this.expense,
+          amount: Math.round(this.amount)
+        })
+      }
       this.expense = ''
       this.amount = ''
     }
