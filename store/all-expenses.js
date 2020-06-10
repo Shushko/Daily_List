@@ -23,6 +23,10 @@ export const actions = {
   async onAddNewExpense (ctx, item) {
     const newItem = await this.$axios.$post('/expenses', item)
     ctx.commit('updateExpenses', newItem)
+  },
+  async onAddExpense (ctx, { itemId, value }) {
+    const newItem = await this.$axios.$patch(`/expenses/${itemId}`, { amount: value })
+    ctx.commit('changeValue', newItem)
   }
 }
 
@@ -35,5 +39,9 @@ export const mutations = {
   },
   removeItem (state, itemId) {
     state.expenses = state.expenses.filter(n => n.id !== itemId)
+  },
+  changeValue (state, newItem) {
+    const ind = state.expenses.findIndex(n => n.id === newItem.id)
+    state.expenses.splice(ind, 1, newItem)
   }
 }

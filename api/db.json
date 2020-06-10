@@ -25,19 +25,29 @@
   ],
   "expenses": [
     {
-      "expense": "www",
-      "amount": 3000,
+      "expense": 5,
+      "amount": 1000,
       "id": 1
     },
     {
-      "expense": "dba",
-      "amount": 3000,
+      "expense": "Products",
+      "amount": 1000,
       "id": 2
     },
     {
-      "expense": "some",
-      "amount": 2700,
+      "expense": 34,
+      "amount": 24,
       "id": 3
+    },
+    {
+      "expense": "d",
+      "amount": 1000,
+      "id": 4
+    },
+    {
+      "expense": "df",
+      "amount": 222,
+      "id": 5
     }
   ]
 }

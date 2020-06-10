@@ -75,7 +75,6 @@ export default {
       this.$store.dispatch('budget/onRemoveItem', itemId)
     },
     onAddNewSource () {
-      // console.log('DAYS', this.$moment().daysInMonth())
       if (this.source && this.amount) {
         this.$store.dispatch('budget/onAddNewSource', {
           source: this.source,

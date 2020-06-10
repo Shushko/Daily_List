@@ -68,7 +68,13 @@ export default {
       this.$store.dispatch('all-expenses/onRemoveItem', itemId)
     },
     onAddNewExpense () {
-      if (this.expense && this.amount) {
+      const newItem = this.expenses.find(n => n.expense === this.expense)
+      if (newItem) {
+        this.$store.dispatch('all-expenses/onAddExpense', {
+          itemId: newItem.id,
+          value: Math.round(this.amount) + Number(newItem.amount)
+        })
+      } else {
         this.$store.dispatch('all-expenses/onAddNewExpense', {
           expense: this.expense,
           amount: Math.round(this.amount)

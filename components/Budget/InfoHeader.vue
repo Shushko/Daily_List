@@ -27,11 +27,6 @@
 import { mapGetters } from 'vuex'
 export default {
   name: 'InfoHeader',
-  data: () => ({
-    totalIncomes: 0,
-    totalExpenses: 0,
-    deferredFinance: 0
-  }),
   computed: {
     ...mapGetters({
       incomes: 'budget/incomes',
@@ -47,7 +42,7 @@ export default {
       return Math.round(this.getTotalIncomes - this.getTotalExpenses - this.calculateDeferredFinance)
     },
     calculateDailyBudget () {
-      return Math.round(this.calculateAvailableFinance / 30)
+      return Math.round(this.calculateAvailableFinance / this.$moment().daysInMonth())
     },
     calculateDeferredFinance () {
       return Math.round(this.getTotalIncomes / 10)
