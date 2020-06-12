@@ -2,14 +2,16 @@
   <div class="container">
     <MainTasks />
     <MainBudget />
+    <UpdateData />
   </div>
 </template>
 
 <script>
 import MainTasks from '../components/main_page_tasks/MainTasks'
 import MainBudget from '../components/main_page_budget/MainBudget'
+import UpdateData from '../components/UpdateData'
 export default {
-  components: { MainBudget, MainTasks }
+  components: { UpdateData, MainBudget, MainTasks }
 }
 </script>
 

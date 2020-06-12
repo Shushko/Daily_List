@@ -60,9 +60,6 @@ export default {
     restCurrentBudget () {
       const dailyExpenses = this.todayExpenses.reduce((sum, n) => sum + Number(n.amount), 0)
       return this.currentBudget - dailyExpenses
-    },
-    time () {
-      return this.$moment().format('LT') === '5:55 PM'
     }
   },
   methods: {

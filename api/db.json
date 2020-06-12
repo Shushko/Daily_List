@@ -25,21 +25,38 @@
   ],
   "expenses": [
     {
-      "expense": "Products",
-      "amount": 1000,
-      "id": 2
+      "expense": "test",
+      "amount": 600,
+      "id": 10
     },
     {
-      "expense": "d",
-      "amount": 1700,
-      "id": 4
+      "expense": "sfr",
+      "amount": 300,
+      "id": 11
+    },
+    {
+      "expense": "a",
+      "amount": 974,
+      "id": 12
+    },
+    {
+      "expense": "ab",
+      "amount": 28,
+      "id": 13
+    },
+    {
+      "expense": "qwerty",
+      "amount": 900,
+      "id": 14
+    },
+    {
+      "expense": "edthaerhaerhaer",
+      "amount": 400,
+      "id": 15
     }
   ],
-  "today-expenses": [
-    {
-      "expense": "test",
-      "amount": 200,
-      "id": 1
-    }
-  ]
+  "today-expenses": [],
+  "current-data": {
+    "data": "2:07 AM"
+  }
 }
