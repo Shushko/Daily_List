@@ -25,29 +25,21 @@
   ],
   "expenses": [
     {
-      "expense": 5,
-      "amount": 1000,
-      "id": 1
-    },
-    {
       "expense": "Products",
       "amount": 1000,
       "id": 2
     },
     {
-      "expense": 34,
-      "amount": 24,
-      "id": 3
-    },
-    {
       "expense": "d",
-      "amount": 1000,
+      "amount": 1700,
       "id": 4
-    },
+    }
+  ],
+  "today-expenses": [
     {
-      "expense": "df",
-      "amount": 222,
-      "id": 5
+      "expense": "test",
+      "amount": 200,
+      "id": 1
     }
   ]
 }

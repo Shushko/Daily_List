@@ -1,5 +1,5 @@
 <template>
-  <div class="all-expenses">
+  <div class="all-expenses-container">
     <table class="expenses-list">
       <tr v-for="(item, index) of expenses" :key="item.id">
         <td>{{ index+1 }}</td>
@@ -16,27 +16,7 @@
         </td>
       </tr>
     </table>
-    <form class="add-expense">
-      <input
-        v-model="expense"
-        type="text"
-        placeholder="Expense..."
-        required
-        title="Use only charters!"
-        pattern="^[a-zA-Z\s]+$"
-      >
-      <input
-        v-model="amount"
-        type="text"
-        placeholder="Amount..."
-        title="Use only numbers!"
-        required
-        pattern="^[0-9]+$"
-      >
-      <button class="btn btn-sm btn-outline-primary add-button" type="submit" @click.prevent="onAddNewExpense()">
-        Add
-      </button>
-    </form>
+    <FormForAdd :nameForRequest="'all-expenses'" :listWithValues="expenses" />
     <div class="total-item">
       Total
       <span class="total-sum">{{ getTotal }}</span>
@@ -46,12 +26,10 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import FormForAdd from '../FormForAdd'
 export default {
   name: 'AllExpenses',
-  data: () => ({
-    expense: null,
-    amount: null
-  }),
+  components: { FormForAdd },
   computed: {
     ...mapGetters({
       expenses: 'all-expenses/expenses'
@@ -66,22 +44,6 @@ export default {
     }),
     onRemoveItem (itemId) {
       this.$store.dispatch('all-expenses/onRemoveItem', itemId)
-    },
-    onAddNewExpense () {
-      const newItem = this.expenses.find(n => n.expense === this.expense)
-      if (newItem) {
-        this.$store.dispatch('all-expenses/onAddExpense', {
-          itemId: newItem.id,
-          value: Math.round(this.amount) + Number(newItem.amount)
-        })
-      } else {
-        this.$store.dispatch('all-expenses/onAddNewExpense', {
-          expense: this.expense,
-          amount: Math.round(this.amount)
-        })
-      }
-      this.expense = ''
-      this.amount = ''
     }
   },
   mounted () {
@@ -91,7 +53,7 @@ export default {
 </script>
 
 <style scoped lang="sass">
-.all-expenses
+.all-expenses-container
   margin-top: 30px
   h5
     margin-left: 5px
@@ -107,16 +69,6 @@ export default {
     margin: 5px
   .remove-item
     float: right
-  .add-expense
-    margin-top: 20px
-    display: flex
-    padding: 5px
-    width: 100%
-    input
-      margin-left: 20px
-      width: 35%
-  .add-button
-    margin-left: auto
   .total-item
     margin-left: 5px
     margin-top: 20px

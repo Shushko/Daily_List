@@ -128,8 +128,10 @@ export default {
     padding: 5px
     width: 100%
     input
-      margin-left: 20px
-      width: 35%
+      width: 40%
+      margin-left: 10px
+      &:first-child
+        margin-left: 0px
   .add-button
     margin-left: auto
 </style>

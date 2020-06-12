@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="info-header-container">
     <div class="info-item">
       <h6>Total Incomes</h6>
       <span class="value total-incomes">{{ getTotalIncomes }}</span>
@@ -42,18 +42,20 @@ export default {
       return Math.round(this.getTotalIncomes - this.getTotalExpenses - this.calculateDeferredFinance)
     },
     calculateDailyBudget () {
-      return Math.round(this.calculateAvailableFinance / this.$moment().daysInMonth())
+      return Math.round(this.calculateAvailableFinance / (this.$moment().daysInMonth() - this.$moment().date() + 1))
     },
     calculateDeferredFinance () {
       return Math.round(this.getTotalIncomes / 10)
     }
+  },
+  methods: {
   }
 }
 </script>
 
 <style scoped lang="sass">
-.container
-  margin-top: 90px
+.info-header-container
+  margin: 0 auto
   width: 90%
   padding: 10px 0 10px 0
   display: flex

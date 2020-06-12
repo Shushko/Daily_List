@@ -18,9 +18,11 @@ export default {
 </script>
 
 <style scoped lang="sass">
-.main-content
-  margin-top: 40px
-  margin-bottom: 100px
-  display: flex
-  justify-content: space-around
+.container
+  margin-top: 90px
+  .main-content
+    margin-top: 40px
+    margin-bottom: 100px
+    display: flex
+    justify-content: space-around
 </style>
