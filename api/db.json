@@ -40,23 +40,165 @@
       "id": 12
     },
     {
-      "expense": "ab",
-      "amount": 28,
+      "expense": "aerg",
+      "amount": 100,
       "id": 13
     },
     {
-      "expense": "qwerty",
-      "amount": 900,
+      "expense": "sd",
+      "amount": 45,
       "id": 14
     },
     {
-      "expense": "edthaerhaerhaer",
-      "amount": 400,
+      "expense": "products",
+      "amount": 200,
       "id": 15
+    },
+    {
+      "expense": "abv",
+      "amount": 100,
+      "id": 16
+    },
+    {
+      "expense": "asfr",
+      "amount": 40,
+      "id": 17
+    },
+    {
+      "expense": "waef",
+      "amount": 38,
+      "id": 18
+    },
+    {
+      "expense": "sf",
+      "amount": 120,
+      "id": 19
+    },
+    {
+      "expense": "rrrrr",
+      "amount": 400,
+      "id": 20
+    },
+    {
+      "expense": "ffffff",
+      "amount": 250,
+      "id": 21
+    },
+    {
+      "expense": "dfsv",
+      "amount": 33,
+      "id": 22
     }
   ],
-  "today-expenses": [],
+  "today_expenses": [],
+  "previous_today_expenses": [
+    {
+      "data": "06/12/2020",
+      "total": 300,
+      "today_expenses": [
+        {
+          "expense": "abv",
+          "amount": 100,
+          "id": 1
+        },
+        {
+          "expense": "asfr",
+          "amount": 40,
+          "id": 2
+        },
+        {
+          "expense": "waef",
+          "amount": 40,
+          "id": 3
+        },
+        {
+          "expense": "sf",
+          "amount": 120,
+          "id": 4
+        }
+      ],
+      "id": 1
+    },
+    {
+      "data": "06/13/2020",
+      "total": 190,
+      "today_expenses": [
+        {
+          "expense": "sfsa",
+          "amount": 50,
+          "id": 1
+        },
+        {
+          "expense": "asfr",
+          "amount": 40,
+          "id": 2
+        },
+        {
+          "expense": "asrgef",
+          "amount": 100,
+          "id": 3
+        }
+      ],
+      "id": 2
+    },
+    {
+      "data": "06/14/2020",
+      "total": 290,
+      "today_expenses": [
+        {
+          "expense": "abv",
+          "amount": 100,
+          "id": 1
+        },
+        {
+          "expense": "asfr",
+          "amount": 40,
+          "id": 2
+        },
+        {
+          "expense": "waef",
+          "amount": 30,
+          "id": 3
+        },
+        {
+          "expense": "sf",
+          "amount": 120,
+          "id": 4
+        }
+      ],
+      "id": 3
+    },
+    {
+      "data": "06/15/2020",
+      "total": 650,
+      "today_expenses": [
+        {
+          "expense": "rrrrr",
+          "amount": 400,
+          "id": 1
+        },
+        {
+          "expense": "ffffff",
+          "amount": 250,
+          "id": 2
+        }
+      ],
+      "id": 4
+    },
+    {
+      "data": "06/17/2020",
+      "total": 33,
+      "today_expenses": [
+        {
+          "expense": "dfsv",
+          "amount": 33,
+          "id": 1
+        }
+      ],
+      "id": 5
+    }
+  ],
   "current-data": {
-    "data": "2:07 AM"
+    "data": "06/17/2020"
   }
 }

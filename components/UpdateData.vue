@@ -1,3 +1,7 @@
+<template>
+  <div />
+</template>
+
 <script>
 import { mapGetters } from 'vuex'
 export default {
@@ -17,9 +21,15 @@ export default {
   methods: {
     async checkData () {
       const result = await this.$axios.$get('/current-data')
-      const currentData = this.$moment().format('LT')
+      const currentData = this.$moment().format('L')
       if (result.data !== currentData) {
         await this.$axios.$patch('/current-data', { data: currentData })
+        const sum = this.todayExpenses.reduce((sum, n) => sum + Number(n.amount), 0)
+        await this.$axios.$post('/previous_today_expenses', {
+          data: this.$moment().format('L'),
+          total: sum,
+          today_expenses: this.todayExpenses
+        })
         for (const i of this.todayExpenses) {
           for (const n of this.expenses) {
             if (i.expense === n.expense) {

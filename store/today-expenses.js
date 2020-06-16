@@ -8,24 +8,24 @@ export const getters = {
 
 export const actions = {
   async getTodayExpenses (ctx) {
-    let todayExpensesList = []
+    let todayExpensesList = {}
     try {
-      todayExpensesList = await this.$axios.$get('/today-expenses')
+      todayExpensesList = await this.$axios.$get('/today_expenses')
     } catch (e) {
       console.log(e)
     }
     ctx.commit('showTodayExpensesList', todayExpensesList)
   },
   async onAddNewExpense (ctx, item) {
-    const newItem = await this.$axios.$post('/today-expenses', item)
+    const newItem = await this.$axios.$post('/today_expenses', item)
     ctx.commit('updateExpenses', newItem)
   },
   async onAddExpense (ctx, { itemId, value }) {
-    const newItem = await this.$axios.$patch(`/today-expenses/${itemId}`, { amount: value })
+    const newItem = await this.$axios.$patch(`/today_expenses/${itemId}`, { amount: value })
     ctx.commit('changeValue', newItem)
   },
   async onRemoveItem (ctx, itemId) {
-    await this.$axios.$delete(`/today-expenses/${itemId}`)
+    await this.$axios.$delete(`/today_expenses/${itemId}`)
     ctx.commit('removeItem', itemId)
   }
 }
