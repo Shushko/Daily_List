@@ -1,13 +1,17 @@
 <template>
   <div class="container">
     <MainTasks />
+    <MainBudget />
+    <UpdateData />
   </div>
 </template>
 
 <script>
 import MainTasks from '../components/main_page_tasks/MainTasks'
+import MainBudget from '../components/main_page_budget/MainBudget'
+import UpdateData from '../components/UpdateData'
 export default {
-  components: { MainTasks }
+  components: { UpdateData, MainBudget, MainTasks }
 }
 </script>
 
@@ -15,4 +19,6 @@ export default {
 .container
   margin-top: 90px
   margin-bottom: 100px
+  display: flex
+  justify-content: space-around
 </style>

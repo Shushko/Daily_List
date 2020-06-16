@@ -72,6 +72,7 @@ export default {
   padding: 20px
   border: 1px solid darkgray
   width: 60%
+  height: min-content
   border-radius: 4px
 .todo-box-tasks
   margin-top: 30px

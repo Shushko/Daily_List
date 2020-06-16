@@ -22,20 +22,19 @@ export const actions = {
     } else {
       await this.$axios.$patch(`/tasks/${item.id}`, { done: false })
     }
-    const updatedItems = await this.$axios.$get('tasks/')
+    const updatedItems = await this.$axios.$get('/tasks')
     ctx.commit('updateList', updatedItems)
   },
   async onRemoveTask (ctx, itemId) {
-    await this.$axios.delete(`tasks/${itemId}`)
+    await this.$axios.delete(`/tasks/${itemId}`)
     ctx.commit('removeItem', itemId)
   },
   async onAddTodo (ctx, todo) {
     await this.$axios.$post('/tasks', todo)
-    ctx.commit('addNewTask', todo)
   },
   async changeItemTodo (ctx, { itemId, value }) {
     await this.$axios.$patch(`/tasks/${itemId}`, { todo: value })
-    const updatedItems = await this.$axios.$get('tasks/')
+    const updatedItems = await this.$axios.$get('/tasks')
     ctx.commit('updateList', updatedItems)
   }
 }
@@ -43,9 +42,6 @@ export const actions = {
 export const mutations = {
   loadTodos (state, todos) {
     state.tasks = todos
-  },
-  addNewTask (state, todo) {
-    state.tasks.push(todo)
   },
   removeItem (state, itemId) {
     state.tasks = state.tasks.filter(n => n.id !== itemId)

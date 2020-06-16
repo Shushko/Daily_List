@@ -38,7 +38,8 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
-    '@nuxtjs/router'
+    '@nuxtjs/router',
+    '@nuxtjs/moment'
   ],
   /*
   ** Nuxt.js modules

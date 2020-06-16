@@ -6,22 +6,40 @@
         <td>
           {{ index+1 }}
         </td>
-        <td>
+        <td class="item-of-list">
           {{ item.source }}
         </td>
         <td class="amount-item">
           {{ item.amount }}
         </td>
         <td>
-          <batton class="btn btn-sm btn-outline-danger remove-item" @click="onRemoveItem(item.id)">
+          <button
+            @click.prevent="onRemoveItem(item.id)"
+            class="btn btn-sm btn-outline-danger remove-item"
+            type="submit"
+          >
             Remove
-          </batton>
+          </button>
         </td>
       </tr>
     </table>
-    <form class="add-source" @submit="onAddNewSource">
-      <input v-model="newSource.source" type="text" placeholder="Source...">
-      <input v-model="newSource.amount" type="text" placeholder="Amount...">
+    <form class="add-source" @submit.prevent="onAddNewSource">
+      <input
+        v-model="source"
+        type="text"
+        placeholder="Source..."
+        required
+        title="Use only charters!"
+        pattern="^[a-zA-Z\s]+$"
+      >
+      <input
+        v-model="amount"
+        type="text"
+        placeholder="Amount..."
+        title="Use only numbers!"
+        required
+        pattern="^[0-9]+$"
+      >
       <button class="btn btn-sm btn-outline-primary add-button" type="submit">
         Add
       </button>
@@ -34,33 +52,41 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'IncomesSection',
-  props: {
-    incomes: {
-      type: Array
-    }
-  },
   data: () => ({
-    total: 0,
-    newSource: {
-      source: null,
-      amount: null
-    }
+    source: null,
+    amount: null
   }),
   computed: {
+    ...mapGetters({
+      incomes: 'budget/incomes'
+    }),
     getTotal () {
       return this.incomes.reduce((sum, n) => sum + Number(n.amount), 0)
     }
   },
   methods: {
-    async onRemoveItem (id) {
-      await this.$axios.$delete(`incomes/${id}`)
-      this.incomes = await this.$axios.$get('incomes/')
+    ...mapActions({
+      getIncomes: 'budget/getIncomes'
+    }),
+    onRemoveItem (itemId) {
+      this.$store.dispatch('budget/onRemoveItem', itemId)
     },
-    async onAddNewSource () {
-      await this.$axios.$post('incomes/', this.newSource)
+    onAddNewSource () {
+      if (this.source && this.amount) {
+        this.$store.dispatch('budget/onAddNewSource', {
+          source: this.source,
+          amount: Math.round(this.amount)
+        })
+      }
+      this.source = ''
+      this.amount = ''
     }
+  },
+  mounted () {
+    this.getIncomes()
   }
 }
 </script>
@@ -68,6 +94,7 @@ export default {
 <style scoped lang="sass">
 .incomes-box
   width: 40%
+  height: min-content
   padding: 10px
   border: 1px solid darkgray
   border-radius: 5px
@@ -76,10 +103,15 @@ export default {
     text-decoration: underline
   td
     padding: 5px
+  .item-of-list
+    width: 60%
   .incomes-list
+    margin-top: 30px
     width: 100%
   .amount-item
     margin: 5px
+    float: right
+  .remove-item
     float: right
   .total-item
     margin-left: 5px
@@ -87,8 +119,6 @@ export default {
     padding-top: 15px
     border-top: 1px solid darkgray
     font-weight: bold
-  .remove-item
-    float: right
   .total-sum
     float: right
     margin-right: 5px
@@ -98,8 +128,10 @@ export default {
     padding: 5px
     width: 100%
     input
-      margin-left: 30px
-      width: 30%
+      width: 40%
+      margin-left: 10px
+      &:first-child
+        margin-left: 0px
   .add-button
     margin-left: auto
 </style>

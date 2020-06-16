@@ -1,0 +1,79 @@
+<template>
+  <form class="add-form" @submit.prevent="onAddNewExpense">
+    <input
+      v-model="expense"
+      type="text"
+      placeholder="Expense..."
+      title="Use only charters!"
+      required
+      pattern="^[a-zA-Z\s]+$"
+    >
+    <input
+      v-model="amount"
+      type="text"
+      placeholder="Amount..."
+      title="Use only numbers!"
+      required
+      pattern="^[0-9]+$"
+    >
+    <button class="btn btn-sm btn-outline-primary add-button" type="submit">
+      Add
+    </button>
+  </form>
+</template>
+
+<script>
+export default {
+  name: 'FormForAdd',
+  props: {
+    nameForRequest: {
+      type: String
+    },
+    listWithValues: {
+      type: Array
+    }
+  },
+  data: () => ({
+    expense: null,
+    amount: null
+  }),
+  methods: {
+    onAddNewExpense () {
+      if (this.expense && this.amount) {
+        const newItem = this.listWithValues.find(n => n.expense === this.expense)
+        if (newItem) {
+          this.$store.dispatch(`${this.nameForRequest}/onAddExpense`, {
+            itemId: newItem.id,
+            value: Math.round(this.amount) + Number(newItem.amount)
+          })
+        } else {
+          this.$store.dispatch(`${this.nameForRequest}/onAddNewExpense`, {
+            expense: this.expense,
+            amount: Math.round(this.amount)
+          })
+        }
+      }
+      this.expense = ''
+      this.amount = ''
+    }
+  }
+}
+</script>
+
+<style scoped lang="sass">
+  .add-form
+    margin-top: 20px
+    display: flex
+    padding: 5px
+    width: 100%
+
+    input
+      width: 40%
+      margin-left: 10px
+
+      &:first-child
+        margin-left: 0px
+
+    .add-button
+      margin-left: auto
+</style>
