@@ -1,7 +1,13 @@
 <template>
   <div class="container">
     <form @submit.prevent="onSearchPreviousExpenses">
-      <input v-model="value" type="text" class="form-control" placeholder="Type to search... (MM/DD/YYYY)">
+      <b-form-datepicker
+        :date-format-options="{ day: '2-digit', month: 'short', year: 'numeric', weekday: 'short' }"
+        v-model="value"
+        class="mb-2"
+        placeholder="Type to search... (YYYY/MM/DD)"
+      >
+      </b-form-datepicker>
       <button class="btn btn-info search-button" type="submit">
         Search
       </button>
@@ -30,6 +36,7 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'SearchDailyExpenses',
   data: () => ({
+    time1: null,
     value: '',
     searchTimeout: null
   }),
@@ -43,9 +50,8 @@ export default {
       getAllList: 'search-daily-expenses/getList'
     }),
     onSearchPreviousExpenses () {
+      console.log(this.value)
       this.$store.dispatch('search-daily-expenses/getItem', { dataItem: this.value })
-      const test = this.$moment(new Date()).format('DD/MM/YYYY')
-      console.log('Data', test)
     }
   },
   watch: {

@@ -93,7 +93,7 @@
   "today_expenses": [],
   "previous_today_expenses": [
     {
-      "data": "06/12/2020",
+      "data": "2020-06-12",
       "total": 300,
       "today_expenses": [
         {
@@ -120,7 +120,7 @@
       "id": 1
     },
     {
-      "data": "06/13/2020",
+      "data": "2020-06-13",
       "total": 190,
       "today_expenses": [
         {
@@ -142,7 +142,7 @@
       "id": 2
     },
     {
-      "data": "06/14/2020",
+      "data": "2020-06-14",
       "total": 290,
       "today_expenses": [
         {
@@ -169,7 +169,7 @@
       "id": 3
     },
     {
-      "data": "06/15/2020",
+      "data": "2020-06-15",
       "total": 650,
       "today_expenses": [
         {
@@ -186,7 +186,7 @@
       "id": 4
     },
     {
-      "data": "06/17/2020",
+      "data": "2020-06-16",
       "total": 33,
       "today_expenses": [
         {
@@ -199,6 +199,6 @@
     }
   ],
   "current-data": {
-    "data": "06/17/2020"
+    "data": "2020-06-17"
   }
 }
