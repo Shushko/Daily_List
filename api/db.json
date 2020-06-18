@@ -1,43 +1,54 @@
 {
   "tasks": [
     {
-      "id": 2,
+      "data": "2020-06-17",
       "todo": "TEST TODO",
-      "done": false
+      "done": false,
+      "id": 2
     },
     {
-      "todo": "Change task - test ",
+      "data": "2020-06-17",
+      "todo": "Change task - test ld",
       "done": false,
       "id": 5
     },
     {
+      "data": "2020-06-18",
       "todo": "test",
       "done": false,
       "id": 6
-    }
-  ],
-  "incomes": [
+    },
     {
-      "source": "PersonX",
-      "amount": 10000,
-      "id": 1
-    }
-  ],
-  "expenses": [
+      "data": "2020-06-19",
+      "todo": "Add new task",
+      "done": false,
+      "id": 9
+    },
     {
-      "expense": "test",
-      "amount": 600,
+      "data": "2020-06-22",
+      "todo": "Wash floor1",
+      "done": true,
       "id": 10
     },
     {
-      "expense": "sfr",
-      "amount": 300,
+      "data": "2020-06-22",
+      "todo": "lola2",
+      "done": false,
       "id": 11
     },
     {
-      "expense": "a",
-      "amount": 974,
+      "data": "2020-06-22",
+      "todo": "wash floor34",
+      "done": true,
       "id": 12
+    }
+  ],
+  "incomes": [],
+  "expenses": [
+    {
+      "expense": "test",
+      "amount": 624,
+      "id": 10
     },
     {
       "expense": "aerg",
@@ -45,52 +56,53 @@
       "id": 13
     },
     {
-      "expense": "sd",
-      "amount": 45,
-      "id": 14
-    },
-    {
       "expense": "products",
       "amount": 200,
       "id": 15
     },
     {
-      "expense": "abv",
-      "amount": 100,
+      "expense": "one",
+      "amount": 520,
       "id": 16
     },
     {
-      "expense": "asfr",
-      "amount": 40,
+      "expense": "testB",
+      "amount": 150,
       "id": 17
     },
     {
-      "expense": "waef",
-      "amount": 38,
+      "expense": "testC",
+      "amount": 40,
       "id": 18
     },
     {
-      "expense": "sf",
-      "amount": 120,
+      "expense": "testD",
+      "amount": 33,
       "id": 19
     },
     {
-      "expense": "rrrrr",
-      "amount": 400,
+      "expense": "two",
+      "amount": 50,
       "id": 20
     },
     {
-      "expense": "ffffff",
-      "amount": 250,
+      "expense": "three",
+      "amount": 40,
       "id": 21
-    },
-    {
-      "expense": "dfsv",
-      "amount": 33,
-      "id": 22
     }
   ],
-  "today_expenses": [],
+  "today_expenses": [
+    {
+      "expense": "one",
+      "amount": 20,
+      "id": 1
+    },
+    {
+      "expense": "privet",
+      "amount": 500,
+      "id": 2
+    }
+  ],
   "previous_today_expenses": [
     {
       "data": "2020-06-12",
@@ -196,9 +208,73 @@
         }
       ],
       "id": 5
+    },
+    {
+      "data": "2020-06-17",
+      "total": 163,
+      "today_expenses": [
+        {
+          "expense": "eeee",
+          "amount": 100,
+          "id": 1
+        },
+        {
+          "expense": "qqqq",
+          "amount": 50,
+          "id": 2
+        },
+        {
+          "expense": "pooo",
+          "amount": 13,
+          "id": 3
+        }
+      ],
+      "id": 6
+    },
+    {
+      "data": "2020-06-17",
+      "total": 357,
+      "today_expenses": [
+        {
+          "expense": "test",
+          "amount": 24,
+          "id": 1
+        },
+        {
+          "expense": "testB",
+          "amount": 150,
+          "id": 2
+        },
+        {
+          "expense": "testC",
+          "amount": 40,
+          "id": 3
+        },
+        {
+          "expense": "testD",
+          "amount": 33,
+          "id": 4
+        },
+        {
+          "expense": "one",
+          "amount": 20,
+          "id": 5
+        },
+        {
+          "expense": "two",
+          "amount": 50,
+          "id": 6
+        },
+        {
+          "expense": "three",
+          "amount": 40,
+          "id": 7
+        }
+      ],
+      "id": 7
     }
   ],
   "current-data": {
-    "data": "2020-06-17"
+    "data": "2020-06-18"
   }
 }

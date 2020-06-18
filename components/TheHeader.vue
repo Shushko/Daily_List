@@ -1,22 +1,20 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <nuxt-link class="navbar-brand" :to="{ name: 'home' }">Daily List</nuxt-link>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <nuxt-link class="nav-link" :to="{ name: 'tasks' }">Tasks</nuxt-link>
-          </li>
-          <li class="nav-item">
+  <div>
+    <b-navbar class="fixed-top" toggleable="lg" type="dark" variant="dark">
+      <div class="container">
+        <nuxt-link class="navbar-brand" :to="{ name: 'home' }">Daily List</nuxt-link>
+
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
             <nuxt-link class="nav-link" :to="{ name: 'finance' }">Finance</nuxt-link>
-          </li>
-          <li class="nav-item">
-            <nuxt-link class="nav-link" :to="{ name: 'search-daily-expenses' }">Search Daily Expenses</nuxt-link>
-          </li>
-        </ul>
+            <nuxt-link class="nav-link" :to="{ name: 'search-daily-expenses' }">Search daily expenses</nuxt-link>
+          </b-navbar-nav>
+        </b-collapse>
       </div>
-    </div>
-  </nav>
+    </b-navbar>
+  </div>
 </template>
 
 <script>
@@ -26,6 +24,6 @@ export default {
 </script>
 
 <style scoped lang="sass">
-.nav-item
+.nav-link:first-child
   margin-left: 30px
 </style>

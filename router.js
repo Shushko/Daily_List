@@ -3,7 +3,6 @@ import Router from 'vue-router'
 
 import Home from './pages'
 import About from './pages/about'
-import Tasks from './pages/tasks'
 import Finance from './pages/finance'
 import SearchDailyExpenses from './pages/search-daily-expenses'
 
@@ -17,11 +16,6 @@ export function createRouter () {
         name: 'about',
         path: '/:lang?/about',
         component: About
-      },
-      {
-        name: 'tasks',
-        path: '/:lang?/tasks',
-        component: Tasks
       },
       {
         name: 'finance',

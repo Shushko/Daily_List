@@ -2,12 +2,11 @@
   <div class="container">
     <form @submit.prevent="onSearchPreviousExpenses">
       <b-form-datepicker
-        :date-format-options="{ day: '2-digit', month: 'short', year: 'numeric', weekday: 'short' }"
         v-model="value"
+        :date-format-options="{ day: '2-digit', month: 'short', year: 'numeric', weekday: 'short' }"
         class="mb-2"
-        placeholder="Type to search... (YYYY/MM/DD)"
-      >
-      </b-form-datepicker>
+        placeholder="Click to search... (YYYY/MM/DD)"
+      />
       <button class="btn btn-info search-button" type="submit">
         Search
       </button>
@@ -17,14 +16,22 @@
         <span class="content-list-title">{{ day.data }}</span>
         <table>
           <tr v-for="(item, index) of day.today_expenses" :key="item.id">
-            <td class="content-list-item">{{ index+1 }}</td>
-            <td class="content-list-expense">{{ item.expense }}</td>
-            <td class="content-list-amount">{{ item.amount }}</td>
+            <td class="content-list-item">
+              {{ index+1 }}
+            </td>
+            <td class="content-list-expense">
+              {{ item.expense }}
+            </td>
+            <td class="content-list-amount">
+              {{ item.amount }}
+            </td>
           </tr>
         </table>
         <div class="content-list-total">
           Total:
-          <div class="content-list-total-sum">{{ day.total }}</div>
+          <div class="content-list-total-sum">
+            {{ day.total }}
+          </div>
         </div>
       </div>
     </div>
@@ -50,20 +57,19 @@ export default {
       getAllList: 'search-daily-expenses/getList'
     }),
     onSearchPreviousExpenses () {
-      console.log(this.value)
       this.$store.dispatch('search-daily-expenses/getItem', { dataItem: this.value })
     }
   },
-  watch: {
-    value (newValue) {
-      clearTimeout(this.searchTimeout)
-      this.searchTimeout = setTimeout(() => {
-        if (newValue.length < 10) {
-          this.$store.dispatch('search-daily-expenses/getList')
-        }
-      }, 1000)
-    }
-  },
+  // watch: {
+  //   value (newValue) {
+  //     clearTimeout(this.searchTimeout)
+  //     this.searchTimeout = setTimeout(() => {
+  //       if (newValue.length < 10) {
+  //         this.$store.dispatch('search-daily-expenses/getList')
+  //       }
+  //     }, 1000)
+  //   }
+  // },
   mounted () {
     this.getAllList()
   }

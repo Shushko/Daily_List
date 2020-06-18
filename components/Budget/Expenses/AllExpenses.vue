@@ -16,7 +16,7 @@
         </td>
       </tr>
     </table>
-    <FormForAdd :nameForRequest="'all-expenses'" :listWithValues="expenses" />
+    <FormForAdd :name-for-request="'all-expenses'" :list-with-values="expenses" />
     <div class="total-item">
       Total
       <span class="total-sum">{{ getTotal }}</span>

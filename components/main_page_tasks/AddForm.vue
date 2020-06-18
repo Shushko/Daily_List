@@ -1,6 +1,6 @@
 <template>
   <div class="add-box">
-    <form @submit="onAddTodo">
+    <form @submit.prevent="onAddTodo">
       <form-group>
         <input v-model="todo" class="form-control" placeholder="Type new task...">
         <div>
@@ -14,25 +14,29 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 export default {
   name: 'AddForm',
+  props: {
+    day: {
+      type: String,
+      required: true
+    }
+  },
   data: () => ({
     todo: '',
     done: false
   }),
   methods: {
-    ...mapActions({
-      onAddTodo () {
-        if (this.todo) {
-          this.$store.dispatch('tasks/onAddTodo', {
-            todo: this.todo,
-            done: this.done
-          })
-          this.todo = ''
-        }
+    onAddTodo () {
+      if (this.todo) {
+        this.$store.dispatch('tasks/onAddTodo', {
+          data: this.day,
+          todo: this.todo,
+          done: this.done
+        })
+        this.todo = ''
       }
-    })
+    }
   }
 }
 </script>

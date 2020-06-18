@@ -26,7 +26,7 @@ export default {
         await this.$axios.$patch('/current-data', { data: currentData })
         const sum = this.todayExpenses.reduce((sum, n) => sum + Number(n.amount), 0)
         await this.$axios.$post('/previous_today_expenses', {
-          data: this.$moment().format('YYYY-MM-DD'),
+          data: this.$moment().subtract(1, 'days').format('YYYY-MM-DD'),
           total: sum,
           today_expenses: this.todayExpenses
         })
