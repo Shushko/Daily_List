@@ -41,6 +41,24 @@
       "todo": "wash floor34",
       "done": true,
       "id": 12
+    },
+    {
+      "data": "2020-06-19",
+      "todo": "TaskA",
+      "done": false,
+      "id": 13
+    },
+    {
+      "data": "2020-06-19",
+      "todo": "TaskB",
+      "done": false,
+      "id": 14
+    },
+    {
+      "data": "2020-06-19",
+      "todo": "TaskC",
+      "done": false,
+      "id": 15
     }
   ],
   "incomes": [],
@@ -51,19 +69,9 @@
       "id": 10
     },
     {
-      "expense": "aerg",
-      "amount": 100,
-      "id": 13
-    },
-    {
       "expense": "products",
       "amount": 200,
       "id": 15
-    },
-    {
-      "expense": "one",
-      "amount": 520,
-      "id": 16
     },
     {
       "expense": "testB",
@@ -81,28 +89,17 @@
       "id": 19
     },
     {
-      "expense": "two",
-      "amount": 50,
-      "id": 20
-    },
-    {
-      "expense": "three",
-      "amount": 40,
-      "id": 21
-    }
-  ],
-  "today_expenses": [
-    {
       "expense": "one",
       "amount": 20,
-      "id": 1
+      "id": 20
     },
     {
       "expense": "privet",
       "amount": 500,
-      "id": 2
+      "id": 21
     }
   ],
+  "today_expenses": [],
   "previous_today_expenses": [
     {
       "data": "2020-06-12",
@@ -272,9 +269,26 @@
         }
       ],
       "id": 7
+    },
+    {
+      "data": "2020-06-18",
+      "total": 520,
+      "today_expenses": [
+        {
+          "expense": "one",
+          "amount": 20,
+          "id": 1
+        },
+        {
+          "expense": "privet",
+          "amount": 500,
+          "id": 2
+        }
+      ],
+      "id": 8
     }
   ],
   "current-data": {
-    "data": "2020-06-18"
+    "data": "2020-06-19"
   }
 }

@@ -29,6 +29,9 @@ export default {
   methods: {
     onAddTodo () {
       if (this.todo) {
+        if (!this.day) {
+          this.day = this.$moment().format('YYYY-MM-DD')
+        }
         this.$store.dispatch('tasks/onAddTodo', {
           data: this.day,
           todo: this.todo,

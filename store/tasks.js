@@ -17,13 +17,13 @@ export const actions = {
     ctx.commit('loadTodos', todos)
   },
   async onChangeStatus (ctx, item) {
+    let updatedItem = null
     if (!item.done) {
-      await this.$axios.$patch(`/tasks/${item.id}`, { done: true })
+      updatedItem = await this.$axios.$patch(`/tasks/${item.id}`, { done: true })
     } else {
-      await this.$axios.$patch(`/tasks/${item.id}`, { done: false })
+      updatedItem = await this.$axios.$patch(`/tasks/${item.id}`, { done: false })
     }
-    const updatedItems = await this.$axios.$get('/tasks')
-    ctx.commit('updateList', updatedItems)
+    ctx.commit('updateList', updatedItem)
   },
   async onRemoveTask (ctx, itemId) {
     await this.$axios.delete(`/tasks/${itemId}`)

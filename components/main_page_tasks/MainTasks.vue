@@ -15,14 +15,13 @@
           v-for="(task, index) of tasks"
           :key="task.index"
           class="todo-box-tasks-item"
-          :style="{ background: task.done === true ? 'palegreen' : 'white' }"
         >
           <td>
             <label class="checkbox">
               <input type="checkbox" class="checkbox-input">
               <div
                 class="checkbox-body"
-                :style="{ background: task.done === true ? 'black' : 'white' }"
+                :style="{ background: task.done === true ? 'lightblue' : 'white' }"
                 @click="onChangeStatus(task)"
               />
             </label>
@@ -87,7 +86,7 @@ export default {
 .todo-box
   padding: 20px
   border: 1px solid darkgray
-  width: 60%
+  width: 50%
   height: min-content
   border-radius: 4px
   &-header
@@ -101,7 +100,7 @@ export default {
       width: 100%
     &-item
       width: 100%
-      border-bottom: 1px solid darkgray
+      transition: all 0.3s
       &-content
         width: 60%
       td
@@ -130,4 +129,6 @@ export default {
             position: absolute
             height: 12px
             width: 12px
+    &-item:hover
+      background: #E5E5E5
 </style>
