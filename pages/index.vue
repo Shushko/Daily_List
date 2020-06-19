@@ -1,8 +1,8 @@
 <template>
   <div class="container">
+    <UpdateData />
     <MainTasks />
     <MainBudget />
-    <UpdateData />
   </div>
 </template>
 

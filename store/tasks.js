@@ -7,35 +7,35 @@ export const getters = {
 }
 
 export const actions = {
-  async getTasks ({ commit }) {
+  async getTasks (ctx, day) {
     let todos = []
     try {
-      todos = await this.$axios.$get('/tasks')
+      todos = await this.$axios.$get('/tasks', { params: { data: day } })
     } catch (e) {
       console.log(e)
     }
-    commit('loadTodos', todos)
+    ctx.commit('loadTodos', todos)
   },
   async onChangeStatus (ctx, item) {
+    let updatedItem = null
     if (!item.done) {
-      await this.$axios.$patch(`/tasks/${item.id}`, { done: true })
+      updatedItem = await this.$axios.$patch(`/tasks/${item.id}`, { done: true })
     } else {
-      await this.$axios.$patch(`/tasks/${item.id}`, { done: false })
+      updatedItem = await this.$axios.$patch(`/tasks/${item.id}`, { done: false })
     }
-    const updatedItems = await this.$axios.$get('/tasks')
-    ctx.commit('updateList', updatedItems)
+    ctx.commit('updateList', updatedItem)
   },
   async onRemoveTask (ctx, itemId) {
     await this.$axios.delete(`/tasks/${itemId}`)
     ctx.commit('removeItem', itemId)
   },
   async onAddTodo (ctx, todo) {
-    await this.$axios.$post('/tasks', todo)
+    const newTodo = await this.$axios.$post('/tasks', todo)
+    ctx.commit('addNewTodo', newTodo)
   },
   async changeItemTodo (ctx, { itemId, value }) {
-    await this.$axios.$patch(`/tasks/${itemId}`, { todo: value })
-    const updatedItems = await this.$axios.$get('/tasks')
-    ctx.commit('updateList', updatedItems)
+    const updatedItem = await this.$axios.$patch(`/tasks/${itemId}`, { todo: value })
+    ctx.commit('updateList', updatedItem)
   }
 }
 
@@ -43,10 +43,14 @@ export const mutations = {
   loadTodos (state, todos) {
     state.tasks = todos
   },
+  addNewTodo (state, newTodo) {
+    state.tasks.push(newTodo)
+  },
   removeItem (state, itemId) {
     state.tasks = state.tasks.filter(n => n.id !== itemId)
   },
-  updateList (state, updatedItems) {
-    state.tasks = updatedItems
+  updateList (state, updatedItem) {
+    const itemIndex = state.tasks.findIndex(n => n.id === updatedItem.id)
+    state.tasks.splice(itemIndex, 1, updatedItem)
   }
 }

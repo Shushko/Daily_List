@@ -1,7 +1,12 @@
 <template>
   <div class="container">
     <form @submit.prevent="onSearchPreviousExpenses">
-      <input v-model="value" type="text" class="form-control" placeholder="Type to search... (MM/DD/YYYY)">
+      <b-form-datepicker
+        v-model="value"
+        :date-format-options="{ day: '2-digit', month: 'short', year: 'numeric', weekday: 'short' }"
+        class="mb-2"
+        placeholder="Click to search... (YYYY/MM/DD)"
+      />
       <button class="btn btn-info search-button" type="submit">
         Search
       </button>
@@ -11,14 +16,22 @@
         <span class="content-list-title">{{ day.data }}</span>
         <table>
           <tr v-for="(item, index) of day.today_expenses" :key="item.id">
-            <td class="content-list-item">{{ index+1 }}</td>
-            <td class="content-list-expense">{{ item.expense }}</td>
-            <td class="content-list-amount">{{ item.amount }}</td>
+            <td class="content-list-item">
+              {{ index+1 }}
+            </td>
+            <td class="content-list-expense">
+              {{ item.expense }}
+            </td>
+            <td class="content-list-amount">
+              {{ item.amount }}
+            </td>
           </tr>
         </table>
         <div class="content-list-total">
           Total:
-          <div class="content-list-total-sum">{{ day.total }}</div>
+          <div class="content-list-total-sum">
+            {{ day.total }}
+          </div>
         </div>
       </div>
     </div>
@@ -30,6 +43,7 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'SearchDailyExpenses',
   data: () => ({
+    time1: null,
     value: '',
     searchTimeout: null
   }),
@@ -44,20 +58,18 @@ export default {
     }),
     onSearchPreviousExpenses () {
       this.$store.dispatch('search-daily-expenses/getItem', { dataItem: this.value })
-      const test = this.$moment(new Date()).format('DD/MM/YYYY')
-      console.log('Data', test)
     }
   },
-  watch: {
-    value (newValue) {
-      clearTimeout(this.searchTimeout)
-      this.searchTimeout = setTimeout(() => {
-        if (newValue.length < 10) {
-          this.$store.dispatch('search-daily-expenses/getList')
-        }
-      }, 1000)
-    }
-  },
+  // watch: {
+  //   value (newValue) {
+  //     clearTimeout(this.searchTimeout)
+  //     this.searchTimeout = setTimeout(() => {
+  //       if (newValue.length < 10) {
+  //         this.$store.dispatch('search-daily-expenses/getList')
+  //       }
+  //     }, 1000)
+  //   }
+  // },
   mounted () {
     this.getAllList()
   }

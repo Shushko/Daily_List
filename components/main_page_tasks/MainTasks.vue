@@ -1,20 +1,27 @@
 <template>
   <div class="todo-box">
-    <h3>Today tasks:</h3>
+    <div class="todo-box-header">
+      <h3>Today tasks:</h3>
+      <b-form-datepicker
+        v-model="value"
+        :date-format-options="{ day: '2-digit', month: 'short', year: 'numeric', weekday: 'short' }"
+        class="todo-box-header-search"
+        placeholder="Search..."
+      />
+    </div>
     <div class="todo-box-tasks">
       <table>
         <tr
           v-for="(task, index) of tasks"
           :key="task.index"
-          class="todo-list"
-          :style="{ background: task.done === true ? 'palegreen' : 'white' }"
+          class="todo-box-tasks-item"
         >
           <td>
             <label class="checkbox">
               <input type="checkbox" class="checkbox-input">
               <div
                 class="checkbox-body"
-                :style="{ background: task.done === true ? 'black' : 'white' }"
+                :style="{ background: task.done === true ? 'lightblue' : 'white' }"
                 @click="onChangeStatus(task)"
               />
             </label>
@@ -22,15 +29,15 @@
           <td>
             {{ index+1 }}
           </td>
-          <td>
+          <td class="todo-box-tasks-item-content">
             <EditTask :task="task" />
           </td>
-          <td class="remove-btn">
+          <td class="remove-button">
             <RemoveButton :item="task" />
           </td>
         </tr>
       </table>
-      <AddForm />
+      <AddForm :day="value"/>
     </div>
   </div>
 </template>
@@ -47,6 +54,14 @@ export default {
     EditTask,
     AddForm
   },
+  data: () => ({
+    value: null
+  }),
+  watch: {
+    value (newValue) {
+      this.$store.dispatch('tasks/getTasks', newValue)
+    }
+  },
   computed: {
     ...mapGetters({
       tasks: 'tasks/todos'
@@ -61,7 +76,7 @@ export default {
     }
   },
   mounted () {
-    this.getTasks()
+    this.getTasks(this.$moment().format('YYYY-MM-DD'))
   }
 }
 
@@ -71,40 +86,49 @@ export default {
 .todo-box
   padding: 20px
   border: 1px solid darkgray
-  width: 60%
+  width: 50%
   height: min-content
   border-radius: 4px
-.todo-box-tasks
-  margin-top: 30px
-  table
-    width: 100%
-.todo-list
-  width: 100%
-  border-bottom: 1px solid darkgray
-  td
-    padding: 5px
-.checkbox
-  display: flex
-  align-items: center
-  .checkbox-body
-    position: relative
-    margin-top: 5px
-    height: 16px
-    width: 16px
-    border: 1px solid darkgray
-    border-radius: 3px
-    cursor: pointer
-  &-input
-    z-index: -1
-    opacity: 0
-    position: absolute
-    &:checked + .checkbox-body:after
-      content: ''
-      margin-left: 1px
-      margin-top: 1px
-      position: absolute
-      height: 12px
-      width: 12px
-.remove-btn
-  float: right
+  &-header
+    display: flex
+    justify-content: space-between
+    &-search
+      width: 200px
+  &-tasks
+    margin-top: 30px
+    table
+      width: 100%
+    &-item
+      width: 100%
+      transition: all 0.3s
+      &-content
+        width: 60%
+      td
+        padding: 5px
+      .remove-button
+        float: right
+      .checkbox
+        display: flex
+        align-items: center
+        &-body
+          position: relative
+          margin-top: 5px
+          height: 16px
+          width: 16px
+          border: 1px solid darkgray
+          border-radius: 3px
+          cursor: pointer
+        &-input
+          z-index: -1
+          opacity: 0
+          position: absolute
+          &:checked + .checkbox-body:after
+            content: ''
+            margin-left: 1px
+            margin-top: 1px
+            position: absolute
+            height: 12px
+            width: 12px
+    &-item:hover
+      background: #E5E5E5
 </style>

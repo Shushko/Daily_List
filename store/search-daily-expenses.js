@@ -14,6 +14,7 @@ export const actions = {
     } catch (e) {
       console.log(e)
     }
+    allList = allList.reverse()
     ctx.commit('updAllList', allList)
   },
   async getItem ({ params, commit }, { dataItem }) {
