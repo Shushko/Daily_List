@@ -26,21 +26,15 @@
     },
     {
       "data": "2020-06-22",
-      "todo": "Wash floor1",
-      "done": true,
+      "todo": "Wash floor",
+      "done": false,
       "id": 10
     },
     {
       "data": "2020-06-22",
-      "todo": "lola2",
+      "todo": "lola4",
       "done": false,
       "id": 11
-    },
-    {
-      "data": "2020-06-22",
-      "todo": "wash floor34",
-      "done": true,
-      "id": 12
     },
     {
       "data": "2020-06-19",
@@ -55,13 +49,19 @@
       "id": 14
     },
     {
-      "data": "2020-06-19",
-      "todo": "TaskC",
+      "data": "2020-06-21",
+      "todo": "фыопашгфырка",
       "done": false,
       "id": 15
     }
   ],
-  "incomes": [],
+  "incomes": [
+    {
+      "source": "personX",
+      "amount": 10000,
+      "id": 1
+    }
+  ],
   "expenses": [
     {
       "expense": "test",
@@ -97,6 +97,11 @@
       "expense": "privet",
       "amount": 500,
       "id": 21
+    },
+    {
+      "expense": "asmf",
+      "amount": 100,
+      "id": 22
     }
   ],
   "today_expenses": [],
@@ -286,9 +291,21 @@
         }
       ],
       "id": 8
+    },
+    {
+      "data": "2020-06-19",
+      "total": 0,
+      "today_expenses": [],
+      "id": 9
+    },
+    {
+      "data": "2020-06-21",
+      "total": 0,
+      "today_expenses": [],
+      "id": 10
     }
   ],
   "current-data": {
-    "data": "2020-06-19"
+    "data": "2020-06-22"
   }
 }

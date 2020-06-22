@@ -1,7 +1,10 @@
 <template>
-  <button class="btn btn-sm btn-outline-danger" @click="onRemoveTask(item.id)">
-    Remove
-  </button>
+  <b-icon
+    icon="trash-fill"
+    font-scale="1"
+    @click="onRemoveTask(item.id)"
+    class="rmv-button"
+  />
 </template>
 
 <script>
@@ -22,4 +25,9 @@ export default {
 </script>
 
 <style scoped lang="sass">
+.rmv-button
+  cursor: pointer
+  transition: all 0.3s
+.rmv-button:hover
+  color: indianred
 </style>

@@ -21,9 +21,10 @@
               <input type="checkbox" class="checkbox-input">
               <div
                 class="checkbox-body"
-                :style="{ background: task.done === true ? 'lightblue' : 'white' }"
                 @click="onChangeStatus(task)"
-              />
+              >
+                <b-icon icon="check2" font-scale="1" v-show="task.done" />
+              </div>
             </label>
           </td>
           <td>
@@ -32,12 +33,12 @@
           <td class="todo-box-tasks-item-content">
             <EditTask :task="task" />
           </td>
-          <td class="remove-button">
+          <td>
             <RemoveButton :item="task" />
           </td>
         </tr>
       </table>
-      <AddForm :day="value"/>
+      <AddForm :day="value" />
     </div>
   </div>
 </template>
@@ -102,11 +103,9 @@ export default {
       width: 100%
       transition: all 0.3s
       &-content
-        width: 60%
+        width: 80%
       td
         padding: 5px
-      .remove-button
-        float: right
       .checkbox
         display: flex
         align-items: center
@@ -118,6 +117,8 @@ export default {
           border: 1px solid darkgray
           border-radius: 3px
           cursor: pointer
+          display: flex
+          align-items: center
         &-input
           z-index: -1
           opacity: 0

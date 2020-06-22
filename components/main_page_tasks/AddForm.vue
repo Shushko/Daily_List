@@ -1,14 +1,12 @@
 <template>
   <div class="add-box">
     <form @submit.prevent="onAddTodo">
-      <form-group>
         <input v-model="todo" class="form-control" placeholder="Type new task...">
         <div>
           <button type="submit" class="btn btn-sm btn-primary mt-3">
             Add new task
           </button>
         </div>
-      </form-group>
     </form>
   </div>
 </template>
