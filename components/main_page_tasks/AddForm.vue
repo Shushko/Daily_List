@@ -1,14 +1,16 @@
 <template>
-  <div class="add-box">
-    <form @submit.prevent="onAddTodo">
-        <input v-model="todo" class="form-control" placeholder="Type new task...">
-        <div>
-          <button type="submit" class="btn btn-sm btn-primary mt-3">
-            Add new task
-          </button>
-        </div>
-    </form>
-  </div>
+  <form class="add-box" @submit.prevent="onAddTodo">
+    <input v-model="todo" class="form-control" placeholder="Type new task...">
+    <div>
+      <button class="btn btn-sm btn-outline-primary">
+        <b-icon
+          icon="plus"
+          font-scale="1.8"
+          type="submit"
+        />
+      </button>
+    </div>
+  </form>
 </template>
 
 <script>
@@ -45,6 +47,9 @@ export default {
 <style scoped lang="sass">
 .add-box
   margin-top: 30px
-.add-box-input
-  width: 90%
+  display: flex
+  justify-content: space-between
+  align-items: center
+  input
+    width: 85%
 </style>

@@ -1,13 +1,7 @@
 <template>
   <div class="todo-box">
     <div class="todo-box-header">
-      <h3>Today tasks:</h3>
-      <b-form-datepicker
-        v-model="value"
-        :date-format-options="{ day: '2-digit', month: 'short', year: 'numeric', weekday: 'short' }"
-        class="todo-box-header-search"
-        placeholder="Search..."
-      />
+      <h3>Tasks:</h3>
     </div>
     <div class="todo-box-tasks">
       <table>
@@ -54,14 +48,6 @@ export default {
     RemoveButton,
     EditTask,
     AddForm
-  },
-  data: () => ({
-    value: null
-  }),
-  watch: {
-    value (newValue) {
-      this.$store.dispatch('tasks/getTasks', newValue)
-    }
   },
   computed: {
     ...mapGetters({

@@ -2,6 +2,7 @@
   <form class="add-form" @submit.prevent="onAddNewExpense">
     <input
       v-model="expense"
+      class="form-control"
       type="text"
       placeholder="Expense..."
       title="Use only charters!"
@@ -10,14 +11,19 @@
     >
     <input
       v-model="amount"
+      class="form-control"
       type="text"
       placeholder="Amount..."
       title="Use only numbers!"
       required
       pattern="^[0-9]+$"
     >
-    <button class="btn btn-sm btn-outline-primary add-button" type="submit">
-      Add
+    <button class="btn btn-sm btn-outline-primary add-button">
+      <b-icon
+        icon="plus"
+        font-scale="1.6"
+        type="submit"
+      />
     </button>
   </form>
 </template>

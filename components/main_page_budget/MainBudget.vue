@@ -1,7 +1,7 @@
 <template>
-  <div class="main-budget-container">
-    <div class="main-budget-title">
-      <div class="main-budget-title-item">
+  <div class="main_budget-container">
+    <div class="main_budget-title">
+      <div class="main_budget-title-item">
         <h6>
           Daily budget:
         </h6>
@@ -9,7 +9,7 @@
           {{ currentBudget }}
         </span>
       </div>
-      <div class="main-budget-title-item">
+      <div class="main_budget-title-item">
         <h6>
           Rest:
         </h6>
@@ -18,20 +18,23 @@
         </span>
       </div>
     </div>
-    <div class="main-budget-content">
+    <div class="main_budget-content">
       <table>
         <tr v-for="(item, index) of todayExpenses" :key="item.id">
           <td>{{ index+1 }}</td>
-          <td class="main-budget-content-item">
+          <td class="main_budget-content-item">
             {{ item.expense }}
           </td>
-          <td class="main-budget-content-amount">
+          <td class="main_budget-content-amount">
             {{ item.amount }}
           </td>
           <td>
-            <button class="btn btn-sm btn-outline-danger remove-item" @click="onRemoveItem(item.id)">
-              Remove
-            </button>
+            <b-icon
+              icon="trash-fill"
+              font-scale="1"
+              @click="onRemoveItem(item.id)"
+              class="remove-item"
+            />
           </td>
         </tr>
       </table>
@@ -73,7 +76,7 @@ export default {
     }
   },
   mounted () {
-    this.getTodayExpenses()
+    this.getTodayExpenses(this.$moment().format('YYYY-MM-DD'))
     this.getExpenses()
     this.getIncomes()
   }
@@ -81,46 +84,46 @@ export default {
 </script>
 
 <style scoped lang="sass">
-  .main-budget-container
+  .main_budget-container
     width: 35%
     height: min-content
     padding: 20px
     border: 1px solid darkgray
     border-radius: 4px
-
-    .main-budget-title
+    .main_budget-title
       width: 100%
       display: flex
       border-bottom: 1px solid darkgray
       padding: 10px
-
-      .main-budget-title-item
+      &-item
         width: 50%
         display: flex
         justify-content: center
         align-items: baseline
         border-left: 1px solid darkgray
-
         &:first-child
           border: none
-
         .title-item
           margin-left: 10px
           font-weight: bold
-
-    .main-budget-content
+    .main_budget-content
       margin-top: 30px
-
-      td
-        padding: 5px
-
-      .main-budget-content-item
+      table
+        width: 100%
+        tr
+          transition: all 0.3s
+        tr:hover
+          background: #E5E5E5
+        td
+          padding: 5px
+      &-item
         width: 60%
-
-      .main-budget-content-amount
-        float: right
+      &-amount
         margin: 5px
-
       .remove-item
         float: right
+        cursor: pointer
+        transition: all 0.3s
+        &:hover
+          color: indianred
 </style>

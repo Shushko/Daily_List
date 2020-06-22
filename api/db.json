@@ -33,7 +33,7 @@
     {
       "data": "2020-06-22",
       "todo": "lola4",
-      "done": false,
+      "done": true,
       "id": 11
     },
     {
@@ -53,6 +53,30 @@
       "todo": "фыопашгфырка",
       "done": false,
       "id": 15
+    },
+    {
+      "data": "2020-06-22",
+      "todo": "asg",
+      "done": true,
+      "id": 16
+    },
+    {
+      "data": "2020-06-22",
+      "todo": "asdsss",
+      "done": false,
+      "id": 17
+    },
+    {
+      "data": "2020-06-23",
+      "todo": "testA",
+      "done": false,
+      "id": 18
+    },
+    {
+      "data": "2020-06-23",
+      "todo": "TestB",
+      "done": false,
+      "id": 19
     }
   ],
   "incomes": [
@@ -102,9 +126,49 @@
       "expense": "asmf",
       "amount": 100,
       "id": 22
+    },
+    {
+      "expense": "asd",
+      "amount": 300,
+      "id": 23
+    },
+    {
+      "expense": "adsfg",
+      "amount": 300,
+      "id": 24
+    },
+    {
+      "expense": "wag",
+      "amount": 150,
+      "id": 25
     }
   ],
-  "today_expenses": [],
+  "today_expenses": [
+    {
+      "data": "2020-06-22",
+      "expense": "abv",
+      "amount": 100,
+      "id": 1
+    },
+    {
+      "data": "2020-06-22",
+      "expense": "abvddd",
+      "amount": 200,
+      "id": 2
+    },
+    {
+      "data": "2020-06-23",
+      "expense": "erytiueyio",
+      "amount": 100,
+      "id": 3
+    },
+    {
+      "data": "2020-06-23",
+      "expense": "asdhgkhj",
+      "amount": 50,
+      "id": 4
+    }
+  ],
   "previous_today_expenses": [
     {
       "data": "2020-06-12",
@@ -303,9 +367,31 @@
       "total": 0,
       "today_expenses": [],
       "id": 10
+    },
+    {
+      "data": "2020-06-22",
+      "total": 750,
+      "today_expenses": [
+        {
+          "expense": "asd",
+          "amount": 300,
+          "id": 1
+        },
+        {
+          "expense": "adsfg",
+          "amount": 300,
+          "id": 2
+        },
+        {
+          "expense": "wag",
+          "amount": 150,
+          "id": 3
+        }
+      ],
+      "id": 11
     }
   ],
   "current-data": {
-    "data": "2020-06-22"
+    "data": "2020-06-23"
   }
 }

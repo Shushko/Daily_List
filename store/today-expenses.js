@@ -7,10 +7,10 @@ export const getters = {
 }
 
 export const actions = {
-  async getTodayExpenses (ctx) {
-    let todayExpensesList = {}
+  async getTodayExpenses (ctx, day) {
+    let todayExpensesList = []
     try {
-      todayExpensesList = await this.$axios.$get('/today_expenses')
+      todayExpensesList = await this.$axios.$get('/today_expenses', { params: { data: day } })
     } catch (e) {
       console.log(e)
     }
