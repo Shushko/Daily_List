@@ -14,18 +14,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'AddForm',
-  props: {
-    day: {
-      type: String,
-      required: true
-    }
-  },
   data: () => ({
     todo: '',
     done: false
   }),
+  computed: {
+    ...mapGetters({
+      day: 'search/getSelectedDate'
+    })
+  },
   methods: {
     onAddTodo () {
       if (this.todo) {

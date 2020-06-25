@@ -13,13 +13,17 @@
 export default {
   name: 'SearchDay',
   data: () => ({
-    value: null
+    value: new Date()
   }),
   watch: {
     value (newValue) {
       this.$store.dispatch('tasks/getTasks', newValue)
-      this.$store.dispatch('today-expenses/getTodayExpenses', newValue)
+      this.$store.dispatch('expenses/getTodayExpenses', newValue)
+      this.$store.commit('search/changeSelectedDate', this.value)
     }
+  },
+  mounted () {
+    this.$store.commit('search/changeSelectedDate', this.$moment().format('YYYY-MM-DD'))
   }
 }
 </script>

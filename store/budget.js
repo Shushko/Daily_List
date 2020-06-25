@@ -1,9 +1,11 @@
 export const state = () => ({
-  incomes: []
+  incomes: [],
+  todayBudget: ''
 })
 
 export const getters = {
-  incomes: state => state.incomes
+  incomes: state => state.incomes,
+  todayBudget: state => state.todayBudget
 }
 
 export const actions = {
@@ -24,6 +26,14 @@ export const actions = {
   async onAddNewSource (ctx, newSource) {
     const newItem = await this.$axios.$post('/incomes', newSource)
     ctx.commit('addNewItem', newItem)
+  },
+  async changeTodayBudget (ctx, value) {
+    await this.$axios.$patch('/today-budget', { sum: value })
+    ctx.commit('updTodayBudget', value)
+  },
+  async getTodayBudget (ctx) {
+    const currentBudget = await this.$axios.$patch('/today-budget')
+    ctx.commit('updTodayBudget', currentBudget.sum)
   }
 }
 
@@ -36,5 +46,8 @@ export const mutations = {
   },
   addNewItem (state, newItem) {
     state.incomes.push(newItem)
+  },
+  updTodayBudget (state, value) {
+    state.todayBudget = value
   }
 }

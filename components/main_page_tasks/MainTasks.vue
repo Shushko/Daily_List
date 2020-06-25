@@ -1,8 +1,6 @@
 <template>
   <div class="todo-box">
-    <div class="todo-box-header">
-      <h3>Tasks:</h3>
-    </div>
+    <h3>Tasks:</h3>
     <div class="todo-box-tasks">
       <table>
         <tr
@@ -17,7 +15,7 @@
                 class="checkbox-body"
                 @click="onChangeStatus(task)"
               >
-                <b-icon icon="check2" font-scale="1" v-show="task.done" />
+                <b-icon v-show="task.done" icon="check2" font-scale="1" />
               </div>
             </label>
           </td>
@@ -32,7 +30,7 @@
           </td>
         </tr>
       </table>
-      <AddForm :day="value" />
+      <AddForm />
     </div>
   </div>
 </template>
@@ -76,11 +74,6 @@ export default {
   width: 50%
   height: min-content
   border-radius: 4px
-  &-header
-    display: flex
-    justify-content: space-between
-    &-search
-      width: 200px
   &-tasks
     margin-top: 30px
     table

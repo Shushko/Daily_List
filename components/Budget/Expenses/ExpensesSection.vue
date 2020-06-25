@@ -1,6 +1,6 @@
 <template>
   <div class="expenses-box">
-    <h3>Expenses</h3>
+    <h3>All expenses</h3>
     <AllExpenses />
   </div>
 </template>

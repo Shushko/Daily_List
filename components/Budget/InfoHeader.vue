@@ -14,7 +14,7 @@
     </div>
     <div class="info-item">
       <h6>Daily Budget</h6>
-      <span class="value">{{ calculateDailyBudget }}</span>
+      <span class="value">{{ todayBudget }}</span>
     </div>
     <div class="info-item">
       <h6>Deferred</h6>
@@ -30,7 +30,8 @@ export default {
   computed: {
     ...mapGetters({
       incomes: 'budget/incomes',
-      expenses: 'all-expenses/expenses'
+      expenses: 'expenses/allExpenses',
+      todayBudget: 'budget/todayBudget'
     }),
     getTotalIncomes () {
       return this.incomes.reduce((sum, n) => sum + Number(n.amount), 0)
@@ -40,9 +41,6 @@ export default {
     },
     calculateAvailableFinance () {
       return Math.round(this.getTotalIncomes - this.getTotalExpenses - this.calculateDeferredFinance)
-    },
-    calculateDailyBudget () {
-      return Math.round(this.calculateAvailableFinance / (this.$moment().daysInMonth() - this.$moment().date() + 1))
     },
     calculateDeferredFinance () {
       return Math.round(this.getTotalIncomes / 10)
