@@ -1,41 +1,30 @@
 <template>
-  <div class="main-budget-container">
-    <div class="main-budget-title">
-      <div class="main-budget-title-item">
-        <h6>
-          Daily budget:
-        </h6>
-        <span class="title-item">
-          {{ currentBudget }}
-        </span>
-      </div>
-      <div class="main-budget-title-item">
-        <h6>
-          Rest:
-        </h6>
-        <span class="title-item" :style="{ color: restCurrentBudget >= 0 ? 'green' : 'red' }">
-          {{ restCurrentBudget }}
-        </span>
-      </div>
-    </div>
-    <div class="main-budget-content">
+  <div
+    v-show="day <= $moment().format('YYYY-MM-DD')"
+    class="main_budget-container"
+  >
+    <h3>Expenses:</h3>
+    <div class="main_budget-content">
       <table>
         <tr v-for="(item, index) of todayExpenses" :key="item.id">
           <td>{{ index+1 }}</td>
-          <td class="main-budget-content-item">
+          <td class="main_budget-content-item">
             {{ item.expense }}
           </td>
-          <td class="main-budget-content-amount">
+          <td class="main_budget-content-amount">
             {{ item.amount }}
           </td>
           <td>
-            <button class="btn btn-sm btn-outline-danger remove-item" @click="onRemoveItem(item.id)">
-              Remove
-            </button>
+            <b-icon
+              icon="trash-fill"
+              font-scale="1"
+              class="remove-item"
+              @click="onRemoveItem(item)"
+            />
           </td>
         </tr>
       </table>
-      <FormForAdd :nameForRequest="'today-expenses'" :listWithValues="todayExpenses" />
+      <FormForAdd />
     </div>
   </div>
 </template>
@@ -48,79 +37,49 @@ export default {
   components: { FormForAdd },
   computed: {
     ...mapGetters({
-      todayExpenses: 'today-expenses/todayExpenses',
-      expenses: 'all-expenses/expenses',
-      incomes: 'budget/incomes'
-    }),
-    currentBudget () {
-      const inFinance = this.incomes.reduce((sum, n) => sum + Number(n.amount), 0)
-      const outFinance = this.expenses.reduce((sum, n) => sum + Number(n.amount), 0)
-      return Math.round((inFinance - (inFinance / 10) - outFinance) / (this.$moment().daysInMonth() - this.$moment().date() + 1))
-    },
-    restCurrentBudget () {
-      const dailyExpenses = this.todayExpenses.reduce((sum, n) => sum + Number(n.amount), 0)
-      return this.currentBudget - dailyExpenses
-    }
+      todayExpenses: 'expenses/todayExpenses',
+      day: 'search/getSelectedDate'
+    })
   },
   methods: {
     ...mapActions({
-      getTodayExpenses: 'today-expenses/getTodayExpenses',
-      getExpenses: 'all-expenses/getExpenses',
-      getIncomes: 'budget/getIncomes'
+      getTodayExpenses: 'expenses/getTodayExpenses'
     }),
-    onRemoveItem (itemId) {
-      this.$store.dispatch('today-expenses/onRemoveItem', itemId)
+    onRemoveItem (item) {
+      this.$store.dispatch('expenses/onRemoveItem', item)
     }
   },
   mounted () {
-    this.getTodayExpenses()
-    this.getExpenses()
-    this.getIncomes()
+    this.getTodayExpenses(this.$moment().format('YYYY-MM-DD'))
   }
 }
 </script>
 
 <style scoped lang="sass">
-  .main-budget-container
-    width: 35%
+  .main_budget-container
+    width: 40%
     height: min-content
     padding: 20px
     border: 1px solid darkgray
     border-radius: 4px
-
-    .main-budget-title
-      width: 100%
-      display: flex
-      border-bottom: 1px solid darkgray
-      padding: 10px
-
-      .main-budget-title-item
-        width: 50%
-        display: flex
-        justify-content: center
-        align-items: baseline
-        border-left: 1px solid darkgray
-
-        &:first-child
-          border: none
-
-        .title-item
-          margin-left: 10px
-          font-weight: bold
-
-    .main-budget-content
+    .main_budget-content
       margin-top: 30px
-
-      td
-        padding: 5px
-
-      .main-budget-content-item
+      table
+        width: 100%
+        tr
+          transition: all 0.3s
+        tr:hover
+          background: #E5E5E5
+        td
+          padding: 5px
+      &-item
         width: 60%
-
-      .main-budget-content-amount
-        float: right
+      &-amount
         margin: 5px
-
       .remove-item
         float: right
+        cursor: pointer
+        transition: all 0.3s
+        &:hover
+          color: indianred
 </style>

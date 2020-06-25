@@ -45,7 +45,6 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    'nuxt-fontawesome',
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
     // Doc: https://axios.nuxtjs.org/usage
@@ -58,6 +57,9 @@ export default {
   axios: {
     host: 'localhost',
     port: 8080
+  },
+  bootstrapVue: {
+    icons: true // Install the IconsPlugin (in addition to BootStrapVue plugin
   },
   /*
   ** Build configuration

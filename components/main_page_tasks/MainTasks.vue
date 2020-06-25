@@ -1,14 +1,6 @@
 <template>
   <div class="todo-box">
-    <div class="todo-box-header">
-      <h3>Today tasks:</h3>
-      <b-form-datepicker
-        v-model="value"
-        :date-format-options="{ day: '2-digit', month: 'short', year: 'numeric', weekday: 'short' }"
-        class="todo-box-header-search"
-        placeholder="Search..."
-      />
-    </div>
+    <h3>Tasks:</h3>
     <div class="todo-box-tasks">
       <table>
         <tr
@@ -21,9 +13,10 @@
               <input type="checkbox" class="checkbox-input">
               <div
                 class="checkbox-body"
-                :style="{ background: task.done === true ? 'lightblue' : 'white' }"
                 @click="onChangeStatus(task)"
-              />
+              >
+                <b-icon v-show="task.done" icon="check2" font-scale="1" />
+              </div>
             </label>
           </td>
           <td>
@@ -32,12 +25,12 @@
           <td class="todo-box-tasks-item-content">
             <EditTask :task="task" />
           </td>
-          <td class="remove-button">
+          <td>
             <RemoveButton :item="task" />
           </td>
         </tr>
       </table>
-      <AddForm :day="value"/>
+      <AddForm />
     </div>
   </div>
 </template>
@@ -53,14 +46,6 @@ export default {
     RemoveButton,
     EditTask,
     AddForm
-  },
-  data: () => ({
-    value: null
-  }),
-  watch: {
-    value (newValue) {
-      this.$store.dispatch('tasks/getTasks', newValue)
-    }
   },
   computed: {
     ...mapGetters({
@@ -89,11 +74,6 @@ export default {
   width: 50%
   height: min-content
   border-radius: 4px
-  &-header
-    display: flex
-    justify-content: space-between
-    &-search
-      width: 200px
   &-tasks
     margin-top: 30px
     table
@@ -102,11 +82,9 @@ export default {
       width: 100%
       transition: all 0.3s
       &-content
-        width: 60%
+        width: 80%
       td
         padding: 5px
-      .remove-button
-        float: right
       .checkbox
         display: flex
         align-items: center
@@ -118,6 +96,8 @@ export default {
           border: 1px solid darkgray
           border-radius: 3px
           cursor: pointer
+          display: flex
+          align-items: center
         &-input
           z-index: -1
           opacity: 0

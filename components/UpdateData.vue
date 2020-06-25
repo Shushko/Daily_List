@@ -20,10 +20,10 @@ export default {
   },
   methods: {
     async checkData () {
-      const result = await this.$axios.$get('/current-data')
-      const currentData = this.$moment().format('YYYY-MM-DD')
-      if (result.data !== currentData) {
-        await this.$axios.$patch('/current-data', { data: currentData })
+      const result = await this.$axios.$get('/current-date')
+      const currentDate = this.$moment().format('YYYY-MM-DD')
+      if (result.date !== currentDate) {
+        await this.$axios.$patch('/current-date', { date: currentDate })
         const sum = this.todayExpenses.reduce((sum, n) => sum + Number(n.amount), 0)
         await this.$axios.$post('/previous_today_expenses', {
           data: this.$moment().subtract(1, 'days').format('YYYY-MM-DD'),

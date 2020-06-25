@@ -1,8 +1,13 @@
 <template>
   <div class="container">
     <UpdateData />
-    <MainTasks />
-    <MainBudget />
+    <div class="head">
+      <SearchDay class="head-date_picker" />
+    </div>
+    <div class="content">
+      <MainTasks />
+      <MainBudget />
+    </div>
   </div>
 </template>
 
@@ -10,8 +15,10 @@
 import MainTasks from '../components/main_page_tasks/MainTasks'
 import MainBudget from '../components/main_page_budget/MainBudget'
 import UpdateData from '../components/UpdateData'
+import SearchDay from '../components/SearchDay'
+
 export default {
-  components: { UpdateData, MainBudget, MainTasks }
+  components: { SearchDay, UpdateData, MainBudget, MainTasks }
 }
 </script>
 
@@ -19,6 +26,17 @@ export default {
 .container
   margin-top: 90px
   margin-bottom: 100px
-  display: flex
-  justify-content: space-around
+  .head
+    display: flex
+    justify-content: space-between
+  .head-date_picker
+    width: 200px
+  .content
+    margin-top: 30px
+    display: flex
+    justify-content: space-between
+  @media (max-width: 990px)
+    .content
+      flex-direction: column
+      align-items: center
 </style>

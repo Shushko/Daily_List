@@ -1,5 +1,5 @@
 <template>
-  <div @dblclick="onEditMode(task)">
+  <div class="item_content">
     <div v-show="!isEdit">
       {{ task.todo }}
     </div>
@@ -11,6 +11,7 @@
         @keyup.enter="saveItemTodo(task.id, $event.target.value)"
       >
     </div>
+    <b-icon icon="pencil-square" font-scale="1" class="item_content-edit_button" @click.stop="onEditMode(task)" />
   </div>
 </template>
 
@@ -25,9 +26,12 @@ export default {
   data: () => ({
     isEdit: false
   }),
+  mounted () {
+    window.addEventListener('click', this.saveItemTodo)
+  },
   methods: {
     onEditMode (task) {
-      this.isEdit = true
+      this.isEdit ? this.isEdit = false : this.isEdit = true
       this.$nextTick(() => {
         this.$refs['input_item_' + task.id].focus()
       })
@@ -43,4 +47,14 @@ export default {
 </script>
 
 <style scoped lang="sass">
+.item_content
+  display: flex
+  justify-content: space-between
+  align-items: center
+  &-edit_button
+    float: right
+    cursor: pointer
+    transition: all 0.3s
+  &-edit_button:hover
+    color: green
 </style>
