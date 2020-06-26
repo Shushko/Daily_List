@@ -1,7 +1,7 @@
 <template>
-  <div class="all_expenses-container">
+  <div class="total_expenses-container">
     <table class="expenses_list">
-      <tr v-for="(item, index) of allExpenses" :key="item.id">
+      <tr v-for="(item, index) of totalSumOfExpenses" :key="item.id">
         <td>{{ index+1 }}</td>
         <td class="expenses_list-item">
           {{ item.expense }}
@@ -20,22 +20,22 @@ export default {
   name: 'AllExpenses',
   computed: {
     ...mapGetters({
-      allExpenses: 'expenses/allExpenses'
+      totalSumOfExpenses: 'all-expenses/totalSumOfExpenses'
     })
   },
   methods: {
     ...mapActions({
-      getExpenses: 'expenses/getAllExpenses'
+      getTotalSumOfExpenses: 'all-expenses/getTotalSumOfExpenses'
     })
   },
   mounted () {
-    this.getExpenses()
+    this.getTotalSumOfExpenses()
   }
 }
 </script>
 
 <style scoped lang="sass">
-.all_expenses-container
+.total_expenses-container
   margin-top: 30px
   h5
     margin-left: 5px

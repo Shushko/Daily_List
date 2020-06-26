@@ -6,7 +6,7 @@
     <h3>Expenses:</h3>
     <div class="main_budget-content">
       <table>
-        <tr v-for="(item, index) of todayExpenses" :key="item.id">
+        <tr v-for="(item, index) of expensesOfDay" :key="item.id">
           <td>{{ index+1 }}</td>
           <td class="main_budget-content-item">
             {{ item.expense }}
@@ -37,20 +37,30 @@ export default {
   components: { FormForAdd },
   computed: {
     ...mapGetters({
-      todayExpenses: 'expenses/todayExpenses',
-      day: 'search/getSelectedDate'
+      expensesOfDay: 'expenses/expensesOfDay',
+      day: 'search/getSelectedDate',
+      incomes: 'budget/incomes',
+      allExpenses: 'expenses/allExpenses'
     })
   },
   methods: {
     ...mapActions({
-      getTodayExpenses: 'expenses/getTodayExpenses'
+      getExpensesOfDay: 'expenses/getExpensesOfDay',
+      getAllExpenses: 'expenses/getAllExpenses'
     }),
-    onRemoveItem (item) {
-      this.$store.dispatch('expenses/onRemoveItem', item)
+    async onRemoveItem (item) {
+      await this.$store.dispatch('expenses/onRemoveItem', item)
+      if (item.date !== this.$moment().format('YYYY-MM-DD')) {
+        await this.$store.dispatch('today-budget-info/changeTodayBudget', {
+          incomes: this.incomes,
+          expenses: this.allExpenses
+        })
+      }
     }
   },
   mounted () {
-    this.getTodayExpenses(this.$moment().format('YYYY-MM-DD'))
+    this.getExpensesOfDay(this.$moment().format('YYYY-MM-DD'))
+    this.getAllExpenses()
   }
 }
 </script>

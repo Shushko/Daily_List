@@ -73,18 +73,6 @@
       "id": 19
     },
     {
-      "data": "2020-06-24",
-      "todo": "adfsgdfhhhhhh",
-      "done": false,
-      "id": 20
-    },
-    {
-      "data": "2020-06-24",
-      "todo": "sfv",
-      "done": false,
-      "id": 21
-    },
-    {
       "data": "2020-06-23",
       "todo": "testC",
       "done": false,
@@ -95,56 +83,49 @@
       "todo": "test",
       "done": false,
       "id": 23
+    },
+    {
+      "data": "2020-06-27",
+      "todo": "test27",
+      "done": false,
+      "id": 24
     }
   ],
   "incomes": [
     {
-      "source": "personX",
-      "amount": 10000,
+      "source": "test",
+      "amount": 1000,
       "id": 1
+    },
+    {
+      "source": "test",
+      "amount": 1000,
+      "id": 2
     }
   ],
-  "today_expenses": [
-    {
-      "date": "2020-06-26",
-      "expense": "testA",
-      "amount": 100,
-      "id": 1
-    },
+  "expenses": [
     {
       "date": "2020-06-25",
-      "expense": "testB",
+      "expense": "bb",
       "amount": 200,
-      "id": 2
-    },
-    {
-      "date": "2020-06-25",
-      "expense": "testX",
-      "amount": 300,
-      "id": 4
-    },
-    {
-      "date": "2020-06-25",
-      "expense": "testY",
-      "amount": 500,
       "id": 5
     },
     {
       "date": "2020-06-25",
-      "expense": "qwqw",
-      "amount": 200,
+      "expense": "cc",
+      "amount": 300,
       "id": 6
     },
     {
-      "date": "2020-06-26",
-      "expense": "testC",
-      "amount": 400,
+      "date": "2020-06-24",
+      "expense": "test",
+      "amount": 250,
       "id": 7
     },
     {
-      "date": "2020-06-21",
-      "expense": "testC",
-      "amount": 123,
+      "date": "2020-06-26",
+      "expense": "as",
+      "amount": 150,
       "id": 8
     }
   ],
@@ -152,6 +133,6 @@
     "date": "2020-06-26"
   },
   "today-budget": {
-    "sum": 1296
+    "sum": 180
   }
 }

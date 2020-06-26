@@ -14,9 +14,9 @@
         </td>
         <td>
           <button
-            @click.prevent="onRemoveItem(item.id)"
             class="btn btn-sm btn-outline-danger remove-item"
             type="submit"
+            @click.prevent="onRemoveItem(item.id)"
           >
             Remove
           </button>
@@ -61,7 +61,8 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      incomes: 'budget/incomes'
+      incomes: 'budget/incomes',
+      allExpenses: 'expenses/allExpenses'
     }),
     getTotal () {
       return this.incomes.reduce((sum, n) => sum + Number(n.amount), 0)
@@ -71,14 +72,22 @@ export default {
     ...mapActions({
       getIncomes: 'budget/getIncomes'
     }),
-    onRemoveItem (itemId) {
-      this.$store.dispatch('budget/onRemoveItem', itemId)
+    async onRemoveItem (itemId) {
+      await this.$store.dispatch('budget/onRemoveItem', itemId)
+      await this.$store.dispatch('today-budget-info/changeTodayBudget', {
+        incomes: this.incomes,
+        expenses: this.allExpenses
+      })
     },
-    onAddNewSource () {
+    async onAddNewSource () {
       if (this.source && this.amount) {
-        this.$store.dispatch('budget/onAddNewSource', {
+        await this.$store.dispatch('budget/onAddNewSource', {
           source: this.source,
           amount: Math.round(this.amount)
+        })
+        await this.$store.dispatch('today-budget-info/changeTodayBudget', {
+          incomes: this.incomes,
+          expenses: this.allExpenses
         })
       }
       this.source = ''

@@ -39,25 +39,32 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      allExpenses: 'expenses/allExpenses',
-      todayExpenses: 'expenses/todayExpenses',
-      day: 'search/getSelectedDate'
+      expensesOfDay: 'expenses/expensesOfDay',
+      day: 'search/getSelectedDate',
+      incomes: 'budget/incomes',
+      allExpenses: 'expenses/allExpenses'
     })
   },
   methods: {
-    onAddNewExpense () {
+    async onAddNewExpense () {
       if (this.expense && this.amount) {
-        const newItem = this.todayExpenses.find(n => n.expense === this.expense)
+        const newItem = this.expensesOfDay.find(n => n.expense === this.expense)
         if (newItem) {
-          this.$store.dispatch('expenses/onAddExpense', {
+          await this.$store.dispatch('expenses/onAddExpense', {
             itemId: newItem.id,
             value: Math.round(this.amount) + Number(newItem.amount)
           })
         } else {
-          this.$store.dispatch('expenses/onAddNewExpense', {
+          await this.$store.dispatch('expenses/onAddNewExpense', {
             date: this.day,
             expense: this.expense,
             amount: Math.round(this.amount)
+          })
+        }
+        if (this.day !== this.$moment().format('YYYY-MM-DD')) {
+          await this.$store.dispatch('today-budget-info/changeTodayBudget', {
+            incomes: this.incomes,
+            expenses: this.allExpenses
           })
         }
       }

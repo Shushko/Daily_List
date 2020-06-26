@@ -26,9 +26,10 @@ export default {
   computed: {
     ...mapGetters({
       currentExpensesList: 'expenses/currentExpensesList',
-      expenses: 'expenses/allExpenses',
+      expenses: 'expenses/expensesOfDay',
       incomes: 'budget/incomes',
-      todayBudget: 'budget/todayBudget'
+      todayBudget: 'today-budget-info/todayBudget',
+      allExpenses: 'expenses/allExpenses'
     }),
     restCurrentBudget () {
       const dailyExpenses = this.currentExpensesList.reduce((sum, n) => sum + Number(n.amount), 0)
@@ -37,28 +38,28 @@ export default {
   },
   methods: {
     ...mapActions({
-      getTodayExpenses: 'expenses/getTodayExpenses',
-      getExpenses: 'expenses/getAllExpenses',
+      getExpensesOfDay: 'expenses/getExpensesOfDay',
       getIncomes: 'budget/getIncomes',
-      getTodayBudget: 'budget/getTodayBudget'
+      getTodayBudget: 'today-budget-info/getTodayBudget',
+      getAllExpenses: 'expenses/getAllExpenses'
     }),
     async updateTodayBudget () {
       const result = await this.$axios.$get('/current-date')
       const currentDate = this.$moment().format('YYYY-MM-DD')
       if (result.date !== currentDate) {
         await this.$axios.$patch('/current-date', { date: currentDate })
-        const inFinance = this.incomes.reduce((sum, n) => sum + Number(n.amount), 0)
-        const outFinance = this.expenses.reduce((sum, n) => sum + Number(n.amount), 0)
-        const currentTodayBudget = Math.round((inFinance - (inFinance / 10) - outFinance) / (this.$moment().daysInMonth() - this.$moment().date() + 1))
-        await this.$store.dispatch('budget/changeTodayBudget', currentTodayBudget)
+        await this.$store.dispatch('today-budget-info/changeTodayBudget', {
+          incomes: this.incomes,
+          expenses: this.allExpenses
+        })
       }
     }
   },
   mounted () {
-    this.getTodayExpenses(this.$moment().format('YYYY-MM-DD'))
-    this.getExpenses()
+    this.getExpensesOfDay(this.$moment().format('YYYY-MM-DD'))
     this.getIncomes()
     this.getTodayBudget()
+    this.getAllExpenses()
     this.updateTodayBudget()
   }
 }

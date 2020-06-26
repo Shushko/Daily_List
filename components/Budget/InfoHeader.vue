@@ -31,7 +31,7 @@ export default {
     ...mapGetters({
       incomes: 'budget/incomes',
       expenses: 'expenses/allExpenses',
-      todayBudget: 'budget/todayBudget'
+      todayBudget: 'today-budget-info/todayBudget'
     }),
     getTotalIncomes () {
       return this.incomes.reduce((sum, n) => sum + Number(n.amount), 0)
@@ -45,8 +45,6 @@ export default {
     calculateDeferredFinance () {
       return Math.round(this.getTotalIncomes / 10)
     }
-  },
-  methods: {
   }
 }
 </script>
