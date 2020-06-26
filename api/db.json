@@ -106,33 +106,39 @@
   "expenses": [
     {
       "date": "2020-06-25",
-      "expense": "bb",
-      "amount": 200,
-      "id": 5
-    },
-    {
-      "date": "2020-06-25",
-      "expense": "cc",
-      "amount": 300,
-      "id": 6
-    },
-    {
-      "date": "2020-06-24",
-      "expense": "test",
-      "amount": 250,
-      "id": 7
+      "expense": "weweee",
+      "amount": 100,
+      "id": 9
     },
     {
       "date": "2020-06-26",
-      "expense": "as",
-      "amount": 150,
-      "id": 8
+      "expense": "ak",
+      "amount": 30,
+      "id": 10
+    },
+    {
+      "date": "2020-06-26",
+      "expense": "qw",
+      "amount": 50,
+      "id": 11
+    },
+    {
+      "date": "2020-06-25",
+      "expense": "romo",
+      "amount": 200,
+      "id": 12
+    },
+    {
+      "date": "2020-06-25",
+      "expense": "hfhf",
+      "amount": 20,
+      "id": 14
     }
   ],
   "current-date": {
     "date": "2020-06-26"
   },
   "today-budget": {
-    "sum": 180
+    "sum": 260
   }
 }

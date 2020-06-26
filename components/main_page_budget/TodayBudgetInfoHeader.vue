@@ -25,12 +25,14 @@ export default {
   name: 'TodayBudgetInfoHeader',
   computed: {
     ...mapGetters({
-      currentExpensesList: 'expenses/currentExpensesList',
       expenses: 'expenses/expensesOfDay',
       incomes: 'budget/incomes',
       todayBudget: 'today-budget-info/todayBudget',
       allExpenses: 'expenses/allExpenses'
     }),
+    currentExpensesList () {
+      return this.allExpenses.filter(n => n.date === this.$moment().format('YYYY-MM-DD'))
+    },
     restCurrentBudget () {
       const dailyExpenses = this.currentExpensesList.reduce((sum, n) => sum + Number(n.amount), 0)
       return this.todayBudget - dailyExpenses
@@ -38,7 +40,6 @@ export default {
   },
   methods: {
     ...mapActions({
-      getExpensesOfDay: 'expenses/getExpensesOfDay',
       getIncomes: 'budget/getIncomes',
       getTodayBudget: 'today-budget-info/getTodayBudget',
       getAllExpenses: 'expenses/getAllExpenses'
@@ -56,7 +57,6 @@ export default {
     }
   },
   mounted () {
-    this.getExpensesOfDay(this.$moment().format('YYYY-MM-DD'))
     this.getIncomes()
     this.getTodayBudget()
     this.getAllExpenses()

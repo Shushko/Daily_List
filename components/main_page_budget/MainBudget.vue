@@ -37,15 +37,16 @@ export default {
   components: { FormForAdd },
   computed: {
     ...mapGetters({
-      expensesOfDay: 'expenses/expensesOfDay',
       day: 'search/getSelectedDate',
       incomes: 'budget/incomes',
       allExpenses: 'expenses/allExpenses'
-    })
+    }),
+    expensesOfDay () {
+      return this.allExpenses.filter(n => n.date === this.day)
+    }
   },
   methods: {
     ...mapActions({
-      getExpensesOfDay: 'expenses/getExpensesOfDay',
       getAllExpenses: 'expenses/getAllExpenses'
     }),
     async onRemoveItem (item) {
@@ -59,7 +60,6 @@ export default {
     }
   },
   mounted () {
-    this.getExpensesOfDay(this.$moment().format('YYYY-MM-DD'))
     this.getAllExpenses()
   }
 }

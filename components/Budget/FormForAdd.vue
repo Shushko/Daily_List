@@ -39,11 +39,13 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      expensesOfDay: 'expenses/expensesOfDay',
       day: 'search/getSelectedDate',
       incomes: 'budget/incomes',
       allExpenses: 'expenses/allExpenses'
-    })
+    }),
+    expensesOfDay () {
+      return this.allExpenses.filter(n => n.date === this.day)
+    }
   },
   methods: {
     async onAddNewExpense () {
