@@ -11,6 +11,10 @@
         </td>
       </tr>
     </table>
+    <div class="total-item">
+      Total
+      <span class="total-sum">{{ getTotal }}</span>
+    </div>
   </div>
 </template>
 
@@ -21,7 +25,10 @@ export default {
   computed: {
     ...mapGetters({
       totalSumOfExpenses: 'all-expenses/totalSumOfExpenses'
-    })
+    }),
+    getTotal () {
+      return this.totalSumOfExpenses.reduce((sum, n) => sum + Number(n.amount), 0)
+    }
   },
   methods: {
     ...mapActions({
@@ -47,5 +54,14 @@ export default {
     &-item
       width: 70%
     &-amount
-      margin: 5px
+      float: right
+  .total-item
+    margin-left: 5px
+    margin-top: 20px
+    padding-top: 15px
+    border-top: 1px solid darkgray
+    font-weight: bold
+    .total-sum
+      float: right
+      margin-right: 5px
 </style>

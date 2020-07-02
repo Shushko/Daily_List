@@ -1,29 +1,28 @@
 <template>
-  <div class="incomes-box">
-    <h3>Incomes</h3>
-    <table class="incomes-list">
+  <div class="incomes_box">
+    <h3>All incomes</h3>
+    <table class="incomes_box-list">
       <tr v-for="(item, index) of incomes" :key="item.id">
         <td>
           {{ index+1 }}
         </td>
-        <td class="item-of-list">
+        <td class="incomes_box-list-item">
           {{ item.source }}
         </td>
-        <td class="amount-item">
+        <td class="incomes_box-list-amount">
           {{ item.amount }}
         </td>
         <td>
-          <button
-            class="btn btn-sm btn-outline-danger remove-item"
-            type="submit"
-            @click.prevent="onRemoveItem(item.id)"
-          >
-            Remove
-          </button>
+          <b-icon
+            icon="trash-fill"
+            font-scale="1"
+            class="incomes_box-list-remove_btn"
+            @click="onRemoveItem(item.id)"
+          />
         </td>
       </tr>
     </table>
-    <form class="add-source" @submit.prevent="onAddNewSource">
+    <form class="add_form" @submit.prevent="onAddNewSource">
       <input
         v-model="source"
         type="text"
@@ -40,13 +39,17 @@
         required
         pattern="^[0-9]+$"
       >
-      <button class="btn btn-sm btn-outline-primary add-button" type="submit">
-        Add
+      <button class="btn btn-sm btn-outline-primary add_form-add_button">
+        <b-icon
+          icon="plus"
+          font-scale="1.8"
+          type="submit"
+        />
       </button>
     </form>
-    <div class="total-item">
+    <div class="total_item">
       Total
-      <span class="total-sum">{{ getTotal }}</span>
+      <span class="total_item-sum">{{ getTotal }}</span>
     </div>
   </div>
 </template>
@@ -62,7 +65,8 @@ export default {
   computed: {
     ...mapGetters({
       incomes: 'budget/incomes',
-      allExpenses: 'expenses/allExpenses'
+      allExpenses: 'expenses/allExpenses',
+      percentageOfDeferred: 'today-budget-info/percentageOfDeferred'
     }),
     getTotal () {
       return this.incomes.reduce((sum, n) => sum + Number(n.amount), 0)
@@ -76,7 +80,8 @@ export default {
       await this.$store.dispatch('budget/onRemoveItem', itemId)
       await this.$store.dispatch('today-budget-info/changeTodayBudget', {
         incomes: this.incomes,
-        expenses: this.allExpenses
+        expenses: this.allExpenses,
+        percentage: this.percentageOfDeferred
       })
     },
     async onAddNewSource () {
@@ -87,7 +92,8 @@ export default {
         })
         await this.$store.dispatch('today-budget-info/changeTodayBudget', {
           incomes: this.incomes,
-          expenses: this.allExpenses
+          expenses: this.allExpenses,
+          percentage: this.percentageOfDeferred
         })
       }
       this.source = ''
@@ -101,7 +107,7 @@ export default {
 </script>
 
 <style scoped lang="sass">
-.incomes-box
+.incomes_box
   width: 40%
   height: min-content
   padding: 10px
@@ -110,28 +116,26 @@ export default {
   h3
     margin-left: 5px
     text-decoration: underline
-  td
-    padding: 5px
-  .item-of-list
-    width: 60%
-  .incomes-list
+  &-list
     margin-top: 30px
     width: 100%
-  .amount-item
-    margin: 5px
-    float: right
-  .remove-item
-    float: right
-  .total-item
-    margin-left: 5px
-    margin-top: 20px
-    padding-top: 15px
-    border-top: 1px solid darkgray
-    font-weight: bold
-  .total-sum
-    float: right
-    margin-right: 5px
-  .add-source
+    tr
+      transition: all 0.3s
+    tr:hover
+      background: #E5E5E5
+    td
+      padding: 5px
+    &-item
+      width: 60%
+    &-amount
+      float: right
+    &-remove_btn
+      float: right
+      cursor: pointer
+      transition: all 0.3s
+      &:hover
+        color: indianred
+  .add_form
     margin-top: 20px
     display: flex
     padding: 5px
@@ -141,6 +145,15 @@ export default {
       margin-left: 10px
       &:first-child
         margin-left: 0px
-  .add-button
-    margin-left: auto
+    &-add_button
+      margin-left: auto
+  .total_item
+    margin-left: 5px
+    margin-top: 20px
+    padding-top: 15px
+    border-top: 1px solid darkgray
+    font-weight: bold
+    &-sum
+      float: right
+      margin-right: 5px
 </style>

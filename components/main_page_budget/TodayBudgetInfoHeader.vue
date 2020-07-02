@@ -5,7 +5,7 @@
         Daily budget:
       </span>
       <span class="content_info-title-item">
-        {{ todayBudget }}
+        {{ calculateDailyBudget }}
       </span>
     </div>
     <div class="content_info-title">
@@ -28,7 +28,8 @@ export default {
       expenses: 'expenses/expensesOfDay',
       incomes: 'budget/incomes',
       todayBudget: 'today-budget-info/todayBudget',
-      allExpenses: 'expenses/allExpenses'
+      allExpenses: 'expenses/allExpenses',
+      percentageOfDeferred: 'today-budget-info/percentageOfDeferred'
     }),
     currentExpensesList () {
       return this.allExpenses.filter(n => n.date === this.$moment().format('YYYY-MM-DD'))
@@ -36,13 +37,20 @@ export default {
     restCurrentBudget () {
       const dailyExpenses = this.currentExpensesList.reduce((sum, n) => sum + Number(n.amount), 0)
       return this.todayBudget - dailyExpenses
+    },
+    calculateDailyBudget () {
+      if (this.todayBudget < 0) {
+        return 0
+      }
+      return this.todayBudget
     }
   },
   methods: {
     ...mapActions({
       getIncomes: 'budget/getIncomes',
       getTodayBudget: 'today-budget-info/getTodayBudget',
-      getAllExpenses: 'expenses/getAllExpenses'
+      getAllExpenses: 'expenses/getAllExpenses',
+      getPercentage: 'today-budget-info/getPercentage'
     }),
     async updateTodayBudget () {
       const result = await this.$axios.$get('/current-date')
@@ -51,7 +59,8 @@ export default {
         await this.$axios.$patch('/current-date', { date: currentDate })
         await this.$store.dispatch('today-budget-info/changeTodayBudget', {
           incomes: this.incomes,
-          expenses: this.allExpenses
+          expenses: this.allExpenses,
+          percentage: this.percentageOfDeferred
         })
       }
     }
@@ -60,6 +69,7 @@ export default {
     this.getIncomes()
     this.getTodayBudget()
     this.getAllExpenses()
+    this.getPercentage()
     this.updateTodayBudget()
   }
 }

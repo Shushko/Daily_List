@@ -39,7 +39,8 @@ export default {
     ...mapGetters({
       day: 'search/getSelectedDate',
       incomes: 'budget/incomes',
-      allExpenses: 'expenses/allExpenses'
+      allExpenses: 'expenses/allExpenses',
+      percentageOfDeferred: 'today-budget-info/percentageOfDeferred'
     }),
     expensesOfDay () {
       return this.allExpenses.filter(n => n.date === this.day)
@@ -54,7 +55,8 @@ export default {
       if (item.date !== this.$moment().format('YYYY-MM-DD')) {
         await this.$store.dispatch('today-budget-info/changeTodayBudget', {
           incomes: this.incomes,
-          expenses: this.allExpenses
+          expenses: this.allExpenses,
+          percentage: this.percentageOfDeferred
         })
       }
     }
