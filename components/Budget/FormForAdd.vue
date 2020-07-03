@@ -2,18 +2,20 @@
   <form class="add-form" @submit.prevent="onAddNewExpense">
     <input
       v-model="expense"
-      class="form-control"
+      class="input_expense form-control"
       type="text"
-      placeholder="Expense..."
-      title="Use only charters!"
-      required
-      pattern="^[a-zA-Z\s]+$"
+      placeholder="Expense"
     >
+    <b-form-select
+      v-model="expense"
+      :options="options"
+      class="select_expense"
+    />
     <input
       v-model="amount"
-      class="form-control"
+      class="input_amount form-control"
       type="text"
-      placeholder="Amount..."
+      placeholder="Sum"
       title="Use only numbers!"
       required
       pattern="^[0-9]+$"
@@ -30,34 +32,55 @@
 
 <script>
 import { mapGetters } from 'vuex'
-
 export default {
   name: 'FormForAdd',
   data: () => ({
     expense: null,
-    amount: null
+    amount: null,
+    options: [
+      { value: null, text: 'Category', disabled: true },
+      { value: 'Products', text: 'Products' },
+      { value: 'Transport', text: 'Transport' },
+      { value: 'Communal payments', text: 'Communal payments' },
+      { value: 'Internet', text: 'Internet' },
+      { value: 'Mobile', text: 'Mobile' },
+      { value: 'Cafe', text: 'Cafe' }
+    ]
   }),
   computed: {
     ...mapGetters({
+      day: 'search/getSelectedDate',
+      incomes: 'budget/incomes',
       allExpenses: 'expenses/allExpenses',
-      todayExpenses: 'expenses/todayExpenses',
-      day: 'search/getSelectedDate'
-    })
+      percentageOfDeferred: 'today-budget-info/percentageOfDeferred'
+    }),
+    expensesOfDay () {
+      return this.allExpenses.filter(n => n.date === this.day)
+    }
   },
   methods: {
-    onAddNewExpense () {
+    async onAddNewExpense () {
+      console.log(this.expense)
+      console.log(this.amount)
       if (this.expense && this.amount) {
-        const newItem = this.todayExpenses.find(n => n.expense === this.expense)
+        const newItem = this.expensesOfDay.find(n => n.expense === this.expense)
         if (newItem) {
-          this.$store.dispatch('expenses/onAddExpense', {
+          await this.$store.dispatch('expenses/onAddExpense', {
             itemId: newItem.id,
             value: Math.round(this.amount) + Number(newItem.amount)
           })
         } else {
-          this.$store.dispatch('expenses/onAddNewExpense', {
+          await this.$store.dispatch('expenses/onAddNewExpense', {
             date: this.day,
             expense: this.expense,
             amount: Math.round(this.amount)
+          })
+        }
+        if (this.day !== this.$moment().format('YYYY-MM-DD')) {
+          await this.$store.dispatch('today-budget-info/changeTodayBudget', {
+            incomes: this.incomes,
+            expenses: this.allExpenses,
+            percentage: this.percentageOfDeferred
           })
         }
       }
@@ -74,14 +97,15 @@ export default {
     display: flex
     padding: 5px
     width: 100%
-
-    input
+    .input_expense
       width: 40%
-      margin-left: 10px
-
-      &:first-child
-        margin-left: 0px
-
+    .select_expense
+      width: 40%
+      margin-left: 5px
+      cursor: pointer
+    .input_amount
+      width: 20%
+      margin-left: 5px
     .add-button
-      margin-left: auto
+      margin-left: 5px
 </style>

@@ -18,7 +18,6 @@ export default {
   watch: {
     value (newValue) {
       this.$store.dispatch('tasks/getTasks', newValue)
-      this.$store.dispatch('expenses/getTodayExpenses', newValue)
       this.$store.commit('search/changeSelectedDate', this.value)
     }
   },

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <UpdateData />
+    <UpdateMonth />
     <div class="head">
       <SearchDay class="head-date_picker" />
     </div>
@@ -14,11 +14,11 @@
 <script>
 import MainTasks from '../components/main_page_tasks/MainTasks'
 import MainBudget from '../components/main_page_budget/MainBudget'
-import UpdateData from '../components/UpdateData'
+import UpdateMonth from '../components/UpdateMonth'
 import SearchDay from '../components/SearchDay'
 
 export default {
-  components: { SearchDay, UpdateData, MainBudget, MainTasks }
+  components: { SearchDay, UpdateMonth, MainBudget, MainTasks }
 }
 </script>
 

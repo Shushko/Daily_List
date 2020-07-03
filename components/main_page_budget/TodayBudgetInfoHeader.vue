@@ -5,7 +5,7 @@
         Daily budget:
       </span>
       <span class="content_info-title-item">
-        {{ todayBudget }}
+        {{ calculateDailyBudget }}
       </span>
     </div>
     <div class="content_info-title">
@@ -25,40 +25,51 @@ export default {
   name: 'TodayBudgetInfoHeader',
   computed: {
     ...mapGetters({
-      currentExpensesList: 'expenses/currentExpensesList',
-      expenses: 'expenses/allExpenses',
+      expenses: 'expenses/expensesOfDay',
       incomes: 'budget/incomes',
-      todayBudget: 'budget/todayBudget'
+      todayBudget: 'today-budget-info/todayBudget',
+      allExpenses: 'expenses/allExpenses',
+      percentageOfDeferred: 'today-budget-info/percentageOfDeferred'
     }),
+    currentExpensesList () {
+      return this.allExpenses.filter(n => n.date === this.$moment().format('YYYY-MM-DD'))
+    },
     restCurrentBudget () {
       const dailyExpenses = this.currentExpensesList.reduce((sum, n) => sum + Number(n.amount), 0)
       return this.todayBudget - dailyExpenses
+    },
+    calculateDailyBudget () {
+      if (this.todayBudget < 0) {
+        return 0
+      }
+      return this.todayBudget
     }
   },
   methods: {
     ...mapActions({
-      getTodayExpenses: 'expenses/getTodayExpenses',
-      getExpenses: 'expenses/getAllExpenses',
       getIncomes: 'budget/getIncomes',
-      getTodayBudget: 'budget/getTodayBudget'
+      getTodayBudget: 'today-budget-info/getTodayBudget',
+      getAllExpenses: 'expenses/getAllExpenses',
+      getPercentage: 'today-budget-info/getPercentage'
     }),
     async updateTodayBudget () {
       const result = await this.$axios.$get('/current-date')
       const currentDate = this.$moment().format('YYYY-MM-DD')
       if (result.date !== currentDate) {
         await this.$axios.$patch('/current-date', { date: currentDate })
-        const inFinance = this.incomes.reduce((sum, n) => sum + Number(n.amount), 0)
-        const outFinance = this.expenses.reduce((sum, n) => sum + Number(n.amount), 0)
-        const currentTodayBudget = Math.round((inFinance - (inFinance / 10) - outFinance) / (this.$moment().daysInMonth() - this.$moment().date() + 1))
-        await this.$store.dispatch('budget/changeTodayBudget', currentTodayBudget)
+        await this.$store.dispatch('today-budget-info/changeTodayBudget', {
+          incomes: this.incomes,
+          expenses: this.allExpenses,
+          percentage: this.percentageOfDeferred
+        })
       }
     }
   },
   mounted () {
-    this.getTodayExpenses(this.$moment().format('YYYY-MM-DD'))
-    this.getExpenses()
     this.getIncomes()
     this.getTodayBudget()
+    this.getAllExpenses()
+    this.getPercentage()
     this.updateTodayBudget()
   }
 }
