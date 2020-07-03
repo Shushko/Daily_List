@@ -1,95 +1,15 @@
 {
+  "current-date": {
+    "date": "2020-07-04"
+  },
+  "today-budget": {
+    "sum": 273,
+    "percentage": 51
+  },
+  "percentage-of-deferred": {
+    "percentage": 0
+  },
   "tasks": [
-    {
-      "data": "2020-06-17",
-      "todo": "TEST TODO",
-      "done": false,
-      "id": 2
-    },
-    {
-      "data": "2020-06-17",
-      "todo": "Change task - test ld",
-      "done": false,
-      "id": 5
-    },
-    {
-      "data": "2020-06-18",
-      "todo": "test",
-      "done": false,
-      "id": 6
-    },
-    {
-      "data": "2020-06-19",
-      "todo": "Add new task",
-      "done": false,
-      "id": 9
-    },
-    {
-      "data": "2020-06-22",
-      "todo": "Wash floor",
-      "done": false,
-      "id": 10
-    },
-    {
-      "data": "2020-06-22",
-      "todo": "lola4",
-      "done": true,
-      "id": 11
-    },
-    {
-      "data": "2020-06-19",
-      "todo": "TaskA",
-      "done": false,
-      "id": 13
-    },
-    {
-      "data": "2020-06-19",
-      "todo": "TaskB",
-      "done": false,
-      "id": 14
-    },
-    {
-      "data": "2020-06-21",
-      "todo": "ttttttrrrrrrr",
-      "done": false,
-      "id": 15
-    },
-    {
-      "data": "2020-06-22",
-      "todo": "asg",
-      "done": false,
-      "id": 16
-    },
-    {
-      "data": "2020-06-23",
-      "todo": "testA",
-      "done": false,
-      "id": 18
-    },
-    {
-      "data": "2020-06-23",
-      "todo": "TestB",
-      "done": false,
-      "id": 19
-    },
-    {
-      "data": "2020-06-23",
-      "todo": "testC",
-      "done": false,
-      "id": 22
-    },
-    {
-      "data": "2020-06-25",
-      "todo": "test",
-      "done": false,
-      "id": 23
-    },
-    {
-      "data": "2020-06-27",
-      "todo": "test27",
-      "done": false,
-      "id": 24
-    },
     {
       "data": "2020-07-01",
       "todo": "taskA",
@@ -99,8 +19,14 @@
     {
       "data": "2020-07-02",
       "todo": "TaskB",
-      "done": false,
+      "done": true,
       "id": 26
+    },
+    {
+      "data": "2020-07-02",
+      "todo": "TaskZ",
+      "done": true,
+      "id": 27
     }
   ],
   "incomes": [
@@ -108,27 +34,14 @@
       "source": "incA",
       "amount": 5000,
       "id": 1
+    },
+    {
+      "source": "SourceX",
+      "amount": 3000,
+      "id": 2
     }
   ],
   "expenses": [
-    {
-      "date": "2020-06-25",
-      "expense": "weweee",
-      "amount": 100,
-      "id": 9
-    },
-    {
-      "date": "2020-06-25",
-      "expense": "romo",
-      "amount": 200,
-      "id": 12
-    },
-    {
-      "date": "2020-06-25",
-      "expense": "hfhf",
-      "amount": 20,
-      "id": 14
-    },
     {
       "date": "2020-07-01",
       "expense": "exA",
@@ -136,26 +49,66 @@
       "id": 15
     },
     {
-      "date": "2020-07-02",
-      "expense": "Exp",
-      "amount": 30,
-      "id": 16
+      "date": "2020-07-01",
+      "expense": "Products",
+      "amount": 20,
+      "id": 18
     },
     {
       "date": "2020-07-02",
-      "expense": "expA",
-      "amount": 100,
-      "id": 17
+      "expense": "Products",
+      "amount": 50,
+      "id": 19
+    },
+    {
+      "date": "2020-07-02",
+      "expense": "Transport",
+      "amount": 30,
+      "id": 20
+    },
+    {
+      "date": "2020-07-03",
+      "expense": "Products",
+      "amount": 200,
+      "id": 21
     }
   ],
-  "current-date": {
-    "date": "2020-07-02"
-  },
-  "today-budget": {
-    "sum": 138,
-    "percentage": 51
-  },
-  "percentage-of-deferred": {
-    "percentage": 10
-  }
+  "previous-expenses": [
+    {
+      "month": "2020-06",
+      "expenses": [
+        {
+          "date": "2020-06-01",
+          "expense": "Products",
+          "amount": 270,
+          "id": 1
+        },
+        {
+          "date": "2020-06-01",
+          "expense": "exA",
+          "amount": 50,
+          "id": 2
+        },
+        {
+          "date": "2020-06-02",
+          "expense": "Transport",
+          "amount": 30,
+          "id": 3
+        }
+      ],
+      "incomes": [
+        {
+          "source": "incA",
+          "amount": 5000,
+          "id": 1
+        },
+        {
+          "source": "SourceX",
+          "amount": 3000,
+          "id": 2
+        }
+      ],
+      "id": 1
+    }
+  ]
 }

@@ -15,7 +15,7 @@
                 class="checkbox-body"
                 @click="onChangeStatus(task)"
               >
-                <b-icon v-show="task.done" icon="check2" font-scale="1" />
+                <b-icon v-show="task.done" icon="check2" scale="2" class="mb-2" />
               </div>
             </label>
           </td>
@@ -91,8 +91,8 @@ export default {
         &-body
           position: relative
           margin-top: 5px
-          height: 16px
-          width: 16px
+          height: 12px
+          width: 12px
           border: 1px solid darkgray
           border-radius: 3px
           cursor: pointer

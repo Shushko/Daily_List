@@ -69,7 +69,7 @@ export default {
 
 <style scoped lang="sass">
   .main_budget-container
-    width: 40%
+    width: 45%
     height: min-content
     padding: 20px
     border: 1px solid darkgray
