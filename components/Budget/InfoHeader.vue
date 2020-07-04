@@ -71,7 +71,9 @@ export default {
       return this.todayBudget
     },
     calculateDeferredFinance () {
-      return Math.round((this.getTotalIncomes / 100) * this.percentageOfDeferred)
+      const value = Math.round((this.getTotalIncomes / 100) * this.percentageOfDeferred)
+      this.$store.dispatch('today-budget-info/changeDeferredMoney', value)
+      return value
     }
   },
   watch: {

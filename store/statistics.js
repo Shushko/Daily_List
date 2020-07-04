@@ -10,9 +10,8 @@ export const getters = {
 
 export const actions = {
   async getExpensesOfMonth (ctx, { valueYears, valueMonths }) {
-    console.log(valueYears, valueMonths)
     const sortList = await this.$axios.$get('/previous-expenses', { params: { month: `${valueYears}-${valueMonths}` } })
-    ctx.commit('showExpensesOfMonth', sortList)
+    ctx.commit('showExpensesOfMonth', sortList[0])
   },
   async addPreviousMonth (ctx, month) {
     const previousMonth = await this.$axios.$post('/previous-expenses', month)

@@ -1,11 +1,13 @@
 export const state = () => ({
   todayBudget: null,
-  percentageOfDeferred: null
+  percentageOfDeferred: null,
+  deferredMoney: null
 })
 
 export const getters = {
   todayBudget: state => state.todayBudget,
-  percentageOfDeferred: state => state.percentageOfDeferred
+  percentageOfDeferred: state => state.percentageOfDeferred,
+  deferredMoney: state => state.deferredMoney
 }
 
 export const actions = {
@@ -28,6 +30,14 @@ export const actions = {
   async changePercentage (ctx, value) {
     await this.$axios.$patch('/percentage-of-deferred', { percentage: value })
     ctx.commit('updPercentageOfDeferred', value)
+  },
+  async getDeferredMoney (ctx) {
+    const defMoney = await this.$axios.$get('/deferred-money')
+    ctx.commit('updDeferredMoney', defMoney.sum)
+  },
+  async changeDeferredMoney (ctx, value) {
+    await this.$axios.$patch('/deferred-money', { sum: value })
+    ctx.commit('updDeferredMoney', value)
   }
 }
 
@@ -37,5 +47,8 @@ export const mutations = {
   },
   updPercentageOfDeferred (state, value) {
     state.percentageOfDeferred = value
+  },
+  updDeferredMoney (state, value) {
+    state.deferredMoney = value
   }
 }
