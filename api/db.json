@@ -3,11 +3,13 @@
     "date": "2020-07-04"
   },
   "today-budget": {
-    "sum": 273,
-    "percentage": 51
+    "sum": 416
   },
   "percentage-of-deferred": {
-    "percentage": 0
+    "percentage": 5
+  },
+  "deferred-money": {
+    "sum": 650
   },
   "tasks": [
     {
@@ -31,23 +33,17 @@
   ],
   "incomes": [
     {
-      "source": "incA",
-      "amount": 5000,
-      "id": 1
-    },
-    {
       "source": "SourceX",
       "amount": 3000,
       "id": 2
+    },
+    {
+      "source": "SourceA",
+      "amount": 10000,
+      "id": 3
     }
   ],
   "expenses": [
-    {
-      "date": "2020-07-01",
-      "expense": "exA",
-      "amount": 50,
-      "id": 15
-    },
     {
       "date": "2020-07-01",
       "expense": "Products",
@@ -71,11 +67,44 @@
       "expense": "Products",
       "amount": 200,
       "id": 21
+    },
+    {
+      "date": "2020-07-04",
+      "expense": "Internet",
+      "amount": 100,
+      "id": 22
+    },
+    {
+      "date": "2020-07-04",
+      "expense": "Mobile",
+      "amount": 50,
+      "id": 23
+    },
+    {
+      "date": "2020-07-03",
+      "expense": "Transport",
+      "amount": 100,
+      "id": 24
+    },
+    {
+      "date": "2020-07-01",
+      "expense": "Cafe",
+      "amount": 300,
+      "id": 25
+    },
+    {
+      "date": "2020-07-04",
+      "expense": "Products",
+      "amount": 500,
+      "id": 26
     }
   ],
   "previous-expenses": [
     {
       "month": "2020-06",
+      "sumOfIncomes": 8000,
+      "sumOfExpenses": 500,
+      "deferredMoney": 800,
       "expenses": [
         {
           "date": "2020-06-01",
@@ -84,16 +113,28 @@
           "id": 1
         },
         {
+          "date": "2020-06-04",
+          "expense": "Internet",
+          "amount": 100,
+          "id": 2
+        },
+        {
           "date": "2020-06-01",
           "expense": "exA",
           "amount": 50,
-          "id": 2
+          "id": 3
+        },
+        {
+          "date": "2020-06-04",
+          "expense": "Mobile",
+          "amount": 50,
+          "id": 4
         },
         {
           "date": "2020-06-02",
           "expense": "Transport",
           "amount": 30,
-          "id": 3
+          "id": 5
         }
       ],
       "incomes": [
