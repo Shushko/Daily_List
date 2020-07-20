@@ -72,6 +72,9 @@ export default {
       return this.incomes.reduce((sum, n) => sum + Number(n.amount), 0)
     }
   },
+  mounted () {
+    this.getIncomes()
+  },
   methods: {
     ...mapActions({
       getIncomes: 'budget/getIncomes'
@@ -99,9 +102,6 @@ export default {
       this.source = ''
       this.amount = ''
     }
-  },
-  mounted () {
-    this.getIncomes()
   }
 }
 </script>

@@ -2,8 +2,8 @@
   <b-icon
     icon="trash-fill"
     font-scale="1"
-    @click="onRemoveTask(item.id)"
     class="rmv-button"
+    @click="onRemoveTask(item.id)"
   />
 </template>
 

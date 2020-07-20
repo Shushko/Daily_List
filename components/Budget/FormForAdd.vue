@@ -60,8 +60,6 @@ export default {
   },
   methods: {
     async onAddNewExpense () {
-      console.log(this.expense)
-      console.log(this.amount)
       if (this.expense && this.amount) {
         const newItem = this.expensesOfDay.find(n => n.expense === this.expense)
         if (newItem) {

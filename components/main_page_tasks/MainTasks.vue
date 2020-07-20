@@ -52,6 +52,9 @@ export default {
       tasks: 'tasks/todos'
     })
   },
+  mounted () {
+    this.getTasks(this.$moment().format('YYYY-MM-DD'))
+  },
   methods: {
     ...mapActions({
       getTasks: 'tasks/getTasks'
@@ -59,9 +62,6 @@ export default {
     onChangeStatus (task) {
       this.$store.dispatch('tasks/onChangeStatus', task)
     }
-  },
-  mounted () {
-    this.getTasks(this.$moment().format('YYYY-MM-DD'))
   }
 }
 
@@ -111,4 +111,7 @@ export default {
             width: 12px
     &-item:hover
       background: #E5E5E5
+@media (max-width: 992px)
+  .todo-box
+    width: 100%
 </style>

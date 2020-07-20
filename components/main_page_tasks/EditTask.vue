@@ -20,7 +20,8 @@ export default {
   name: 'EditTask',
   props: {
     task: {
-      type: Object
+      type: Object,
+      required: true
     }
   },
   data: () => ({
