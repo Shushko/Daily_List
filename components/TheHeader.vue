@@ -11,8 +11,8 @@
             <nuxt-link class="nav-link rounded" active-class="text-white" :to="{ name: 'finance' }">
               Finance
             </nuxt-link>
-            <nuxt-link class="nav-link rounded" active-class="text-white" :to="{ name: 'search-daily-expenses' }">
-              Search daily expenses
+            <nuxt-link class="nav-link rounded" active-class="text-white" :to="{ name: 'statistics' }">
+              Statistics
             </nuxt-link>
           </b-navbar-nav>
           <div class="today_budget_info_header">

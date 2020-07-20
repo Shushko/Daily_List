@@ -14,11 +14,38 @@
       max="11"
       wrap
     />
-    <div class="content">
-      <div class="info_section">
-        {{ budgetOfMonth.sumOfIncomes }}
-        {{ budgetOfMonth.sumOfExpenses }}
-        {{ budgetOfMonth.deferredMoney }}
+    <div
+      v-show="Object.keys(budgetOfMonth).length !== 0"
+      class="content"
+    >
+      <div class="budget_section">
+        <h3>Monthly statistics</h3>
+        <table class="total_list">
+          <tr>
+            <td class="total_list-item">
+              Total incomes:
+            </td>
+            <td class="total_list-amount">
+              {{ budgetOfMonth.sumOfIncomes }}
+            </td>
+          </tr>
+          <tr>
+            <td class="total_list-item">
+              Total Expenses:
+            </td>
+            <td class="total_list-amount">
+              {{ budgetOfMonth.sumOfExpenses }}
+            </td>
+          </tr>
+          <tr>
+            <td class="total_list-item">
+              Deferred money:
+            </td>
+            <td class="total_list-amount">
+              {{ budgetOfMonth.deferredMoney }}
+            </td>
+          </tr>
+        </table>
       </div>
       <div class="budget_section">
         <h3>All incomes</h3>
@@ -35,7 +62,7 @@
         </table>
         <div class="total-item">
           Total
-          <span class="total-sum">{{ getTotalIncomes }}</span>
+          <span class="total-sum">{{ budgetOfMonth.sumOfIncomes }}</span>
         </div>
       </div>
       <div class="budget_section">
@@ -53,7 +80,7 @@
         </table>
         <div class="total-item">
           Total
-          <span class="total-sum">{{ getTotalExpenses }}</span>
+          <span class="total-sum">{{ budgetOfMonth.sumOfExpenses }}</span>
         </div>
       </div>
     </div>
@@ -160,11 +187,6 @@ export default {
     margin-top: 30px
     display: flex
     justify-content: space-around
-    .info_section
-      width: 30%
-      border: 1px solid darkgray
-      border-radius: 5px
-      height: min-content
     .budget_section
       width: 30%
       height: min-content

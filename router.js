@@ -4,7 +4,7 @@ import Router from 'vue-router'
 import Home from './pages'
 import About from './pages/about'
 import Finance from './pages/finance'
-import SearchDailyExpenses from './pages/search-daily-expenses'
+import Statistics from './pages/statistics'
 
 Vue.use(Router)
 
@@ -23,9 +23,9 @@ export function createRouter () {
         component: Finance
       },
       {
-        name: 'search-daily-expenses',
-        path: '/:lang?/search-daily-expenses/:id?',
-        component: SearchDailyExpenses
+        name: 'statistics',
+        path: '/:lang?/statistics',
+        component: Statistics
       },
       {
         name: 'home',

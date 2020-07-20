@@ -1,9 +1,9 @@
 {
   "current-date": {
-    "date": "2020-07-04"
+    "date": "2020-07-20"
   },
   "today-budget": {
-    "sum": 416
+    "sum": 917
   },
   "percentage-of-deferred": {
     "percentage": 5
@@ -29,6 +29,18 @@
       "todo": "TaskZ",
       "done": true,
       "id": 27
+    },
+    {
+      "data": "2020-07-20",
+      "todo": "TaskA",
+      "done": true,
+      "id": 28
+    },
+    {
+      "data": "2020-07-20",
+      "todo": "TaskB",
+      "done": false,
+      "id": 29
     }
   ],
   "incomes": [
@@ -97,6 +109,18 @@
       "expense": "Products",
       "amount": 500,
       "id": 26
+    },
+    {
+      "date": "2020-07-20",
+      "expense": "test",
+      "amount": 350,
+      "id": 27
+    },
+    {
+      "date": "2020-07-20",
+      "expense": "Products",
+      "amount": 100,
+      "id": 28
     }
   ],
   "previous-expenses": [
