@@ -35,8 +35,17 @@ export default {
     margin-top: 30px
     display: flex
     justify-content: space-between
-  @media (max-width: 990px)
+@media (max-width: 992px)
+  .container
+    display: flex
+    flex-direction: column
+    align-items: center
+    .head
+      width: 100%
+      &-date_picker
+        width: 100%
     .content
       flex-direction: column
       align-items: center
+      width: 100%
 </style>

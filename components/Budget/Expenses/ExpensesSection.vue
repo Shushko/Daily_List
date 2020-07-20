@@ -33,13 +33,13 @@ export default {
       return this.totalSumOfExpenses.reduce((sum, n) => sum + Number(n.amount), 0)
     }
   },
+  mounted () {
+    this.getTotalSumOfExpenses()
+  },
   methods: {
     ...mapActions({
       getTotalSumOfExpenses: 'all-expenses/getTotalSumOfExpenses'
     })
-  },
-  mounted () {
-    this.getTotalSumOfExpenses()
   }
 }
 </script>

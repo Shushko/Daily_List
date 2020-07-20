@@ -31,7 +31,7 @@
           </tr>
           <tr>
             <td class="total_list-item">
-              Total Expenses:
+              Total expenses:
             </td>
             <td class="total_list-amount">
               {{ budgetOfMonth.sumOfExpenses }}
@@ -142,17 +142,6 @@ export default {
       return {}
     }
   },
-  methods: {
-    ...mapActions({
-      getExpensesOfMonth: 'statistics/getExpensesOfMonth',
-      getTotalSumOfExpenses: 'all-expenses/getTotalSumOfExpenses',
-      getIncomes: 'budget/getIncomes',
-      getDeferredMoney: 'today-budget-info/getDeferredMoney'
-    }),
-    monthFormatter (value) {
-      return this.months[value]
-    }
-  },
   watch: {
     valueYears (newValue) {
       this.$store.dispatch('statistics/getExpensesOfMonth', {
@@ -176,6 +165,17 @@ export default {
     this.getTotalSumOfExpenses()
     this.getIncomes()
     this.getDeferredMoney()
+  },
+  methods: {
+    ...mapActions({
+      getExpensesOfMonth: 'statistics/getExpensesOfMonth',
+      getTotalSumOfExpenses: 'all-expenses/getTotalSumOfExpenses',
+      getIncomes: 'budget/getIncomes',
+      getDeferredMoney: 'today-budget-info/getDeferredMoney'
+    }),
+    monthFormatter (value) {
+      return this.months[value]
+    }
   }
 }
 </script>

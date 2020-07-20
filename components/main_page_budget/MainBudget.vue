@@ -46,6 +46,9 @@ export default {
       return this.allExpenses.filter(n => n.date === this.day)
     }
   },
+  mounted () {
+    this.getAllExpenses()
+  },
   methods: {
     ...mapActions({
       getAllExpenses: 'expenses/getAllExpenses'
@@ -60,9 +63,6 @@ export default {
         })
       }
     }
-  },
-  mounted () {
-    this.getAllExpenses()
   }
 }
 </script>
@@ -94,4 +94,8 @@ export default {
         transition: all 0.3s
         &:hover
           color: indianred
+  @media (max-width: 992px)
+    .main_budget-container
+      margin-top: 20px
+      width: 100%
 </style>

@@ -9,8 +9,11 @@ export const getters = {
 }
 
 export const actions = {
-  async getExpensesOfMonth (ctx, { valueYears, valueMonths }) {
-    const sortList = await this.$axios.$get('/previous-expenses', { params: { month: `${valueYears}-${valueMonths}` } })
+  async getExpensesOfMonth (ctx, date = {
+    valueYears: new Date().getFullYear(),
+    valueMonths: new Date().getMonth()
+  }) {
+    const sortList = await this.$axios.$get('/previous-expenses', { params: { month: `${date.valueYears}-${date.valueMonths}` } })
     ctx.commit('showExpensesOfMonth', sortList[0])
   },
   async addPreviousMonth (ctx, month) {

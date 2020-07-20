@@ -34,11 +34,15 @@ export default {
 
 <style scoped lang="sass">
 .header_content
-  width: 100%
   display: flex
   justify-content: space-between
 .nav-link:hover
   background: rgba(255, 255, 255, 0.1)
 .today_budget_info_header
   width: 35%
+@media (max-width: 992px)
+  .header_content
+    display: block
+  .today_budget_info_header
+    width: 60%
 </style>
