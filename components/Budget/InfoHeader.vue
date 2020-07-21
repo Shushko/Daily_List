@@ -99,7 +99,7 @@ export default {
     justify-content: space-around
     border: 1px solid darkgray
     border-radius: 5px
-    .info-item
+    &-item
       width: 20%
       text-align: center
       border-right: 1px solid darkgray
@@ -115,4 +115,18 @@ export default {
         color: green
       .total-expenses
         color: indianred
+@media (max-width: 992px)
+  .info-header-container
+    width: 100%
+    .info
+      flex-direction: column
+      .info-item
+        display: flex
+        justify-content: space-between
+        align-items: baseline
+        border: none
+        width: 100%
+        padding: 0 3% 0 3%
+        .value
+          font-size: 16px
 </style>

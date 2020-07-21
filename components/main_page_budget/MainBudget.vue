@@ -1,31 +1,31 @@
 <template>
   <div
     v-show="day <= $moment().format('YYYY-MM-DD')"
-    class="main_budget-container"
+    class="main_budget_container"
   >
     <h3>Expenses:</h3>
-    <div class="main_budget-content">
-      <table>
-        <tr v-for="(item, index) of expensesOfDay" :key="item.id">
-          <td>{{ index+1 }}</td>
-          <td class="main_budget-content-item">
-            {{ item.expense }}
-          </td>
-          <td class="main_budget-content-amount">
-            {{ item.amount }}
-          </td>
-          <td>
-            <b-icon
-              icon="trash-fill"
-              font-scale="1"
-              class="remove-item"
-              @click="onRemoveItem(item)"
-            />
-          </td>
-        </tr>
-      </table>
-      <FormForAdd />
-    </div>
+    <table class="main_budget_list">
+      <tr
+        v-for="(item, index) of expensesOfDay"
+        :key="item.id"
+        class="main_budget_list-item"
+      >
+        <td>{{ index+1 }}</td>
+        <td>{{ item.expense }}</td>
+        <td class="main_budget_list-item-amount">
+          {{ item.amount }}
+        </td>
+        <td>
+          <b-icon
+            icon="trash-fill"
+            font-scale="1"
+            class="main_budget_list-item-remove_btn"
+            @click="onRemoveItem(item)"
+          />
+        </td>
+      </tr>
+    </table>
+    <FormForAdd />
   </div>
 </template>
 
@@ -68,34 +68,37 @@ export default {
 </script>
 
 <style scoped lang="sass">
-  .main_budget-container
-    width: 45%
-    height: min-content
-    padding: 20px
-    border: 1px solid darkgray
-    border-radius: 4px
-    .main_budget-content
-      margin-top: 30px
-      table
-        width: 100%
-        tr
-          transition: all 0.3s
-        tr:hover
-          background: #E5E5E5
-        td
-          padding: 5px
-      &-item
-        width: 60%
+.main_budget_container
+  width: 45%
+  height: min-content
+  padding: 10px
+  border: 1px solid darkgray
+  border-radius: 5px
+  h3
+    margin-left: 5px
+    text-decoration: underline
+  .main_budget_list
+    display: flex
+    flex-direction: column
+    margin-top: 30px
+    width: 100%
+    td
+      padding: 7px
+    &-item
+      display: flex
+      align-items: center
+      transition: all 0.3s
+      &:hover
+        background: #E5E5E5
       &-amount
-        margin: 5px
-      .remove-item
-        float: right
+        margin-left: auto
+      &-remove_btn
         cursor: pointer
         transition: all 0.3s
         &:hover
           color: indianred
-  @media (max-width: 992px)
-    .main_budget-container
-      margin-top: 20px
-      width: 100%
+@media (max-width: 992px)
+  .main_budget_container
+    margin-top: 30px
+    width: 100%
 </style>

@@ -21,27 +21,21 @@
       <div class="budget_section">
         <h3>Monthly statistics</h3>
         <table class="total_list">
-          <tr>
-            <td class="total_list-item">
-              Total incomes:
-            </td>
-            <td class="total_list-amount">
+          <tr class="total_list-item">
+            <td>Total incomes:</td>
+            <td class="total_list-item-amount">
               {{ budgetOfMonth.sumOfIncomes }}
             </td>
           </tr>
-          <tr>
-            <td class="total_list-item">
-              Total expenses:
-            </td>
-            <td class="total_list-amount">
+          <tr class="total_list-item">
+            <td>Total expenses:</td>
+            <td class="total_list-item-amount">
               {{ budgetOfMonth.sumOfExpenses }}
             </td>
           </tr>
-          <tr>
-            <td class="total_list-item">
-              Deferred money:
-            </td>
-            <td class="total_list-amount">
+          <tr class="total_list-item">
+            <td>Deferred money:</td>
+            <td class="total_list-item-amount">
               {{ budgetOfMonth.deferredMoney }}
             </td>
           </tr>
@@ -50,12 +44,10 @@
       <div class="budget_section">
         <h3>All incomes</h3>
         <table class="total_list">
-          <tr v-for="(item, index) of budgetOfMonth.incomes" :key="item.id">
+          <tr v-for="(item, index) of budgetOfMonth.incomes" :key="item.id" class="total_list-item">
             <td>{{ index+1 }}</td>
-            <td class="total_list-item">
-              {{ item.source }}
-            </td>
-            <td class="total_list-amount">
+            <td>{{ item.source }}</td>
+            <td class="total_list-item-amount">
               {{ item.amount }}
             </td>
           </tr>
@@ -68,12 +60,10 @@
       <div class="budget_section">
         <h3>All expenses</h3>
         <table class="total_list">
-          <tr v-for="(item, index) of budgetOfMonth.expenses" :key="item.id">
+          <tr v-for="(item, index) of budgetOfMonth.expenses" :key="item.id" class="total_list-item">
             <td>{{ index+1 }}</td>
-            <td class="total_list-item">
-              {{ item.expense }}
-            </td>
-            <td class="total_list-amount">
+            <td>{{ item.expense }}</td>
+            <td class="total_list-item-amount">
               {{ item.amount }}
             </td>
           </tr>
@@ -185,6 +175,7 @@ export default {
   margin-top: 90px
   .content
     margin-top: 30px
+    margin-bottom: 100px
     display: flex
     justify-content: space-around
     .budget_section
@@ -196,22 +187,30 @@ export default {
       h3
         margin-left: 5px
         text-decoration: underline
-      td
-        padding: 5px
       .total_list
+        display: flex
+        flex-direction: column
         margin-top: 30px
         width: 100%
+        td
+          padding: 5px
         &-item
-          width: 70%
-        &-amount
-          float: right
+          display: flex
+          &-amount
+            margin-left: auto
       .total-item
-        margin-left: 5px
-        margin-top: 20px
+        display: flex
+        margin: 20px 0 0 5px
         padding-top: 15px
         border-top: 1px solid darkgray
         font-weight: bold
-        .total-sum
-          float: right
-          margin-right: 5px
+    .total-sum
+      margin-left: auto
+@media (max-width: 992px)
+  .content
+    flex-direction: column
+    margin-top: 0px !important
+  .budget_section
+    width: 100% !important
+    margin-top: 30px
 </style>
