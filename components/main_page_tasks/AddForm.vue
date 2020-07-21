@@ -47,6 +47,7 @@ export default {
 <style scoped lang="sass">
 .add-box
   margin-top: 30px
+  padding: 5px
   display: flex
   justify-content: space-between
   align-items: center

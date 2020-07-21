@@ -1,37 +1,33 @@
 <template>
-  <div class="todo-box">
+  <div class="main_tasks_container">
     <h3>Tasks:</h3>
-    <div class="todo-box-tasks">
-      <table>
-        <tr
-          v-for="(task, index) of tasks"
-          :key="task.index"
-          class="todo-box-tasks-item"
-        >
-          <td>
-            <label class="checkbox">
-              <input type="checkbox" class="checkbox-input">
-              <div
-                class="checkbox-body"
-                @click="onChangeStatus(task)"
-              >
-                <b-icon v-show="task.done" icon="check2" scale="2" class="mb-2" />
-              </div>
-            </label>
-          </td>
-          <td>
-            {{ index+1 }}
-          </td>
-          <td class="todo-box-tasks-item-content">
-            <EditTask :task="task" />
-          </td>
-          <td>
-            <RemoveButton :item="task" />
-          </td>
-        </tr>
-      </table>
-      <AddForm />
-    </div>
+    <table class="main_tasks_list">
+      <tr
+        v-for="(task, index) of tasks"
+        :key="task.index"
+        class="main_tasks_list-item"
+      >
+        <td>
+          <label class="checkbox">
+            <input type="checkbox" class="checkbox-input">
+            <div
+              class="checkbox-body"
+              @click="onChangeStatus(task)"
+            >
+              <b-icon v-show="task.done" icon="check2" scale="2" class="mb-2" />
+            </div>
+          </label>
+        </td>
+        <td>{{ index+1 }}</td>
+        <td class="main_tasks_list-item-content">
+          <EditTask :task="task" />
+        </td>
+        <td>
+          <RemoveButton :item="task" />
+        </td>
+      </tr>
+    </table>
+    <AddForm />
   </div>
 </template>
 
@@ -68,23 +64,28 @@ export default {
 </script>
 
 <style scoped lang="sass">
-.todo-box
-  padding: 20px
+.main_tasks_container
+  padding: 10px
   border: 1px solid darkgray
   width: 50%
   height: min-content
-  border-radius: 4px
-  &-tasks
+  border-radius: 5px
+  h3
+    margin-left: 5px
+    text-decoration: underline
+  .main_tasks_list
+    display: flex
+    flex-direction: column
     margin-top: 30px
-    table
-      width: 100%
+    width: 100%
+    td
+      padding: 7px
     &-item
-      width: 100%
+      display: flex
+      align-items: center
       transition: all 0.3s
-      &-content
-        width: 80%
-      td
-        padding: 5px
+      &:hover
+        background: #E5E5E5
       .checkbox
         display: flex
         align-items: center
@@ -109,9 +110,9 @@ export default {
             position: absolute
             height: 12px
             width: 12px
-    &-item:hover
-      background: #E5E5E5
+      &-content
+        width: 100%
 @media (max-width: 992px)
-  .todo-box
+  .main_tasks_container
     width: 100%
 </style>

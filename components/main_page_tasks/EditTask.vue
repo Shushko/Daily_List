@@ -11,7 +11,12 @@
         @keyup.enter="saveItemTodo(task.id, $event.target.value)"
       >
     </div>
-    <b-icon icon="pencil-square" font-scale="1" class="item_content-edit_button" @click.stop="onEditMode(task)" />
+    <b-icon
+      icon="pencil-square"
+      font-scale="1"
+      class="item_content-edit_button"
+      @click.stop="onEditMode(task)"
+    />
   </div>
 </template>
 
@@ -50,10 +55,9 @@ export default {
 <style scoped lang="sass">
 .item_content
   display: flex
-  justify-content: space-between
   align-items: center
   &-edit_button
-    float: right
+    margin-left: auto
     cursor: pointer
     transition: all 0.3s
   &-edit_button:hover

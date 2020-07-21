@@ -1,15 +1,15 @@
 {
   "current-date": {
-    "date": "2020-07-20"
+    "date": "2020-07-21"
   },
   "today-budget": {
-    "sum": 979
+    "sum": 812
   },
   "percentage-of-deferred": {
-    "percentage": 5
+    "percentage": 20
   },
   "deferred-money": {
-    "sum": 700
+    "sum": 2800
   },
   "tasks": [
     {
@@ -47,6 +47,18 @@
       "todo": "Veryyyyyy long taskkkkkkkkkkkk",
       "done": false,
       "id": 30
+    },
+    {
+      "data": "2020-07-21",
+      "todo": "Task X",
+      "done": true,
+      "id": 31
+    },
+    {
+      "data": "2020-07-21",
+      "todo": "Task Y",
+      "done": false,
+      "id": 32
     }
   ],
   "incomes": [
@@ -174,6 +186,36 @@
       "expense": "zz",
       "amount": 10,
       "id": 35
+    },
+    {
+      "date": "2020-07-21",
+      "expense": "qqq",
+      "amount": 100,
+      "id": 36
+    },
+    {
+      "date": "2020-07-21",
+      "expense": "www",
+      "amount": 250,
+      "id": 37
+    },
+    {
+      "date": "2020-07-21",
+      "expense": "Internet",
+      "amount": 150,
+      "id": 38
+    },
+    {
+      "date": "2020-07-21",
+      "expense": "Products",
+      "amount": 200,
+      "id": 39
+    },
+    {
+      "date": "2020-07-21",
+      "expense": "dog",
+      "amount": 250,
+      "id": 40
     }
   ],
   "previous-expenses": [

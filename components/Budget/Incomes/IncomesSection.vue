@@ -1,22 +1,18 @@
 <template>
-  <div class="incomes_box">
+  <div class="incomes_section">
     <h3>All incomes</h3>
-    <table class="incomes_box-list">
-      <tr v-for="(item, index) of incomes" :key="item.id">
-        <td>
-          {{ index+1 }}
-        </td>
-        <td class="incomes_box-list-item">
-          {{ item.source }}
-        </td>
-        <td class="incomes_box-list-amount">
+    <table class="incomes_list">
+      <tr v-for="(item, index) of incomes" :key="item.id" class="incomes_list-item">
+        <td>{{ index+1 }}</td>
+        <td>{{ item.source }}</td>
+        <td class="incomes_list-item-amount">
           {{ item.amount }}
         </td>
         <td>
           <b-icon
             icon="trash-fill"
             font-scale="1"
-            class="incomes_box-list-remove_btn"
+            class="incomes_list-item-remove_btn"
             @click="onRemoveItem(item.id)"
           />
         </td>
@@ -48,7 +44,7 @@
       </button>
     </form>
     <div class="total_item">
-      Total
+      <span>Total</span>
       <span class="total_item-sum">{{ getTotal }}</span>
     </div>
   </div>
@@ -107,7 +103,7 @@ export default {
 </script>
 
 <style scoped lang="sass">
-.incomes_box
+.incomes_section
   width: 40%
   height: min-content
   padding: 10px
@@ -116,25 +112,26 @@ export default {
   h3
     margin-left: 5px
     text-decoration: underline
-  &-list
+  .incomes_list
+    display: flex
+    flex-direction: column
     margin-top: 30px
     width: 100%
-    tr
-      transition: all 0.3s
-    tr:hover
-      background: #E5E5E5
     td
       padding: 5px
     &-item
-      width: 60%
-    &-amount
-      float: right
-    &-remove_btn
-      float: right
-      cursor: pointer
+      display: flex
+      align-items: center
       transition: all 0.3s
       &:hover
-        color: indianred
+        background: #E5E5E5
+      &-amount
+        margin-left: auto
+      &-remove_btn
+        cursor: pointer
+        transition: all 0.3s
+        &:hover
+          color: indianred
   .add_form
     margin-top: 20px
     display: flex
@@ -148,12 +145,14 @@ export default {
     &-add_button
       margin-left: auto
   .total_item
-    margin-left: 5px
-    margin-top: 20px
+    display: flex
+    margin: 20px 0 0 5px
     padding-top: 15px
     border-top: 1px solid darkgray
     font-weight: bold
     &-sum
-      float: right
-      margin-right: 5px
+      margin-left: auto
+@media (max-width: 992px)
+  .incomes_section
+    width: 100%
 </style>

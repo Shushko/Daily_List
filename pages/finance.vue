@@ -20,9 +20,13 @@ export default {
 <style scoped lang="sass">
 .container
   margin-top: 90px
+  margin-bottom: 100px
   .main-content
-    margin-top: 40px
+    margin-top: 30px
     margin-bottom: 100px
     display: flex
     justify-content: space-around
+@media (max-width: 992px)
+  .main-content
+    flex-direction: column
 </style>
